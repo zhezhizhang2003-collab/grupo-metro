@@ -1,33 +1,44 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const marcas = [
-  'Coca-Cola', 'Fanta', 'Nestea', 'Nestlé', 'Red Bull', 'Heineken', 'Corona', 'Guinness',
-  'Estrella Damm', 'Estrella Galicia', 'Budweiser', 'Desperados', 'Evian', 'Font Vella',
-  'Alhambra', 'Voll-Damm', 'Don Simon', 'Granini', 'Juver', 'Viladrau', 'Bezoya', 'San Pellegrino',
-  'Brugal', 'Coors', 'Kopparberg', 'Strongbow', 'Bodega Pinord', 'Solán de Cabras',
-  'Vichy Catalan', 'Larios', 'Magners', 'Powerking', 'San Miguel', 'Mahou', 'Perrier'
+// ── Marcas divididas por categoría ──
+const sinAlcohol = [
+  'Coca-Cola','Fanta','Nestea','Nestlé','Don Simon','Granini','Juver',
+  'Evian','Font Vella','Bezoya','San Pellegrino','Solán de Cabras','Viladrau','Vichy Catalan','Perrier'
 ];
-const marcasDoble = [...marcas, ...marcas];
+const conAlcohol = [
+  'Heineken','Corona','Guinness','Estrella Damm','Estrella Galicia','Budweiser','Desperados',
+  'Alhambra','Voll-Damm','San Miguel','Mahou','Coors',
+  'Red Bull','Powerking',
+  'Brugal','Larios','Bodega Pinord','Kopparberg','Strongbow','Magners'
+];
 
 const logoUrl = (marca: string) => {
   const file = marca.replace(/ /g, '-').replace(/ñ/g, 'n').replace(/é/g, 'e').replace(/á/g, 'a').replace(/ó/g, 'o').replace(/í/g, 'i').replace(/ú/g, 'u').replace(/'/g, '');
-  // SVG vectoriales — siempre nítidos
   const logosSvg = [
     'Alhambra','Budweiser','Coca-Cola','Coors','Corona','Desperados',
     'Estrella-Damm','Estrella-Galicia','Evian','Fanta','Granini','Guinness',
     'Heineken','Kopparberg','Mahou','Nestea','Nestle','Perrier',
     'Red-Bull','San-Miguel','San-Pellegrino'
   ];
-  // PNG 400px — únicos, correctos
   const logosPng = [
     'Bezoya','Bodega-Pinord','Brugal','Don-Simon','Font-Vella','Juver','Larios',
     'Magners','Powerking','Solan-de-Cabras','Strongbow','Vichy-Catalan','Viladrau','Voll-Damm'
   ];
   if (logosSvg.includes(file)) return `/logos/${file}.svg`;
   if (logosPng.includes(file)) return `/logos/${file}.png`;
-  return null; // sin logo → tarjeta de texto
+  return null;
 };
+
+// Top logos for hero
+const topBrands = [
+  { name: 'Coca-Cola', url: '/logos/Coca-Cola.svg' },
+  { name: 'Heineken', url: '/logos/Heineken.svg' },
+  { name: 'Estrella Damm', url: '/logos/Estrella-Damm.svg' },
+  { name: 'Red Bull', url: '/logos/Red-Bull.svg' },
+  { name: 'Nestlé', url: '/logos/Nestle.svg' },
+  { name: 'Font Vella', url: '/logos/Font-Vella.png' },
+];
 ---
 
 <Layout
@@ -36,9 +47,8 @@ const logoUrl = (marca: string) => {
   ogImage="/logo.jpg"
 >
 
-<!-- ════════════════════ HERO ════════════════════ -->
+<!-- ═══════ HERO ═══════ -->
 <section class="hero-bg min-h-[calc(100vh-4rem)] flex items-center relative overflow-hidden">
-  <!-- Decoración sutil de fondo -->
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
     <div class="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-amber-400/3 blur-3xl"></div>
     <div class="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-amber-400/3 blur-3xl"></div>
@@ -81,10 +91,9 @@ const logoUrl = (marca: string) => {
         </div>
       </div>
 
-      <!-- Visual -->
+      <!-- Visual: Logo Grupo Metro + logos de marcas -->
       <div class="hidden md:block">
         <div class="relative">
-          <!-- Logo con glow -->
           <div class="absolute inset-0 bg-amber-400/10 rounded-3xl blur-2xl" aria-hidden="true"></div>
           <img
             src="/logo.jpg"
@@ -94,11 +103,17 @@ const logoUrl = (marca: string) => {
             loading="eager"
           />
         </div>
-        <!-- Mini grid de marcas top -->
-        <div class="grid grid-cols-3 gap-2.5 mt-10">
-          {['Coca-Cola','Estrella Damm','Heineken','Red Bull','Nestlé','Font Vella'].map(marca => (
-            <div class="bg-zinc-900/80 border border-zinc-800/80 rounded-lg px-3 py-2.5 text-center text-xs text-zinc-400 font-medium hover:border-amber-400/30 hover:text-amber-400/80 transition-all duration-200">
-              {marca}
+        <!-- Logos de marcas top en vez de texto -->
+        <div class="grid grid-cols-3 gap-3 mt-10">
+          {topBrands.map(brand => (
+            <div class="bg-zinc-900/80 border border-zinc-800/80 rounded-xl p-4 flex items-center justify-center hover:border-amber-400/30 transition-all duration-200 h-16">
+              <img
+                src={brand.url}
+                alt={brand.name}
+                class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                loading="lazy"
+                width="80" height="40"
+              />
             </div>
           ))}
         </div>
@@ -107,7 +122,7 @@ const logoUrl = (marca: string) => {
   </div>
 </section>
 
-<!-- ════════════════════ QUIÉNES SOMOS ════════════════════ -->
+<!-- ═══════ QUIÉNES SOMOS ═══════ -->
 <section class="py-20 sm:py-28 bg-black relative overflow-hidden">
   <div class="absolute top-0 left-0 right-0 h-px section-divider" aria-hidden="true"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -127,7 +142,6 @@ const logoUrl = (marca: string) => {
         <div class="text-4xl font-display text-amber-400 mb-2">+50</div>
         <p class="text-zinc-400 text-sm leading-relaxed">Marcas oficiales con las que colaboramos directamente, desde refrescos hasta licores premium.</p>
       </div>
-
       <div class="group bg-zinc-900/50 border border-zinc-800/80 rounded-xl p-6 sm:p-8 hover:border-amber-400/30 transition-all duration-300 card-lift">
         <div class="w-12 h-12 rounded-lg bg-amber-400/10 flex items-center justify-center mb-5 group-hover:bg-amber-400/15 transition-colors">
           <span class="text-2xl" aria-hidden="true">📍</span>
@@ -135,7 +149,6 @@ const logoUrl = (marca: string) => {
         <div class="text-4xl font-display text-amber-400 mb-2">Tarragona</div>
         <p class="text-zinc-400 text-sm leading-relaxed">Cobertura completa en toda la provincia: restauración, bares, supermercados y tiendas de conveniencia.</p>
       </div>
-
       <div class="group bg-zinc-900/50 border border-zinc-800/80 rounded-xl p-6 sm:p-8 hover:border-amber-400/30 transition-all duration-300 card-lift">
         <div class="w-12 h-12 rounded-lg bg-amber-400/10 flex items-center justify-center mb-5 group-hover:bg-amber-400/15 transition-colors">
           <span class="text-2xl" aria-hidden="true">⚡</span>
@@ -147,73 +160,67 @@ const logoUrl = (marca: string) => {
   </div>
 </section>
 
-<!-- ════════════════════ MARCAS — Marquee ════════════════════ -->
+<!-- ═══════ MARCAS — Doble cinta por categoría ═══════ -->
 <section class="py-20 sm:py-28 bg-zinc-950 overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
     <span class="text-amber-400 text-xs sm:text-sm tracking-[.3em] uppercase">Colaboraciones Oficiales</span>
     <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 leading-[1.05]">MARCAS QUE<br>DISTRIBUIMOS</h2>
   </div>
 
-  <!-- Cinta 1 — dirección normal -->
-  <div class="marquee-pause py-8 border-y border-zinc-800/30 mb-1 marquee-mask">
-    <div class="animate-marquee flex gap-5 w-max">
-      {marcasDoble.map((marca) => {
-        const url = logoUrl(marca);
-        if (url) {
+  <!-- CINTA SUPERIOR: Refrescos, Aguas, Zumos (sin alcohol) -->
+  <div class="mb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+      <span class="text-xs tracking-wider uppercase text-zinc-500 font-semibold">Refrescos · Aguas · Zumos</span>
+    </div>
+    <div class="marquee-pause py-6 border-y border-zinc-800/20 marquee-mask">
+      <div class="animate-marquee flex gap-4 w-max">
+        {[...sinAlcohol, ...sinAlcohol].map((marca) => {
+          const url = logoUrl(marca);
           return (
-            <div class="bg-zinc-900 border border-zinc-800/80 rounded-xl px-8 py-6 flex flex-col items-center gap-4 hover:border-amber-400/40 hover:bg-zinc-900/80 transition-all duration-300 shrink-0 min-w-[150px]">
-              <img
-                src={url}
-                alt={`Logo ${marca}`}
-                class="h-28 w-auto object-contain"
-                loading="lazy"
-                width="120" height="100"
-              />
-              <span class="text-xs text-zinc-500 font-medium tracking-wide">{marca}</span>
+            <div class="bg-zinc-900 border border-zinc-800/80 rounded-xl px-5 py-4 flex flex-col items-center gap-3 hover:border-amber-400/40 hover:bg-zinc-900/80 transition-all duration-300 shrink-0 w-[140px]">
+              <div class="h-20 w-full flex items-center justify-center">
+                {url ? (
+                  <img src={url} alt={marca} class="h-20 w-auto max-w-full object-contain" loading="lazy" width="100" height="80" />
+                ) : (
+                  <span class="font-display text-2xl text-zinc-600 tracking-wide leading-none text-center">{marca}</span>
+                )}
+              </div>
+              <span class="text-xs text-zinc-500 font-medium tracking-wide text-center">{marca}</span>
             </div>
           );
-        }
-        return (
-          <div class="bg-zinc-900 border border-zinc-800/80 rounded-xl px-8 py-6 flex flex-col items-center justify-center gap-4 hover:border-amber-400/40 transition-all duration-300 shrink-0 min-w-[150px]">
-            <span class="font-display text-3xl text-zinc-600 tracking-wide">{marca}</span>
-            <span class="text-xs text-zinc-600 font-medium tracking-wide">{marca}</span>
-          </div>
-        );
-      })}
+        })}
+      </div>
     </div>
   </div>
 
-  <!-- Cinta 2 — dirección invertida, más lenta -->
-  <div class="marquee-pause py-8 marquee-mask">
-    <div class="animate-marquee-reverse flex gap-5 w-max">
-      {[...marcas].reverse().map((marca) => {
-        const url = logoUrl(marca);
-        if (url) {
+  <!-- CINTA INFERIOR: Cervezas, Licores, Sidras, Energéticas (con alcohol) -->
+  <div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-4">
+      <span class="text-xs tracking-wider uppercase text-zinc-500 font-semibold">Cervezas · Licores · Sidras · Energéticas</span>
+    </div>
+    <div class="marquee-pause py-6 border-y border-zinc-800/20 marquee-mask">
+      <div class="animate-marquee-reverse flex gap-4 w-max">
+        {[...conAlcohol, ...conAlcohol].map((marca) => {
+          const url = logoUrl(marca);
           return (
-            <div class="bg-zinc-900 border border-zinc-800/80 rounded-xl px-8 py-6 flex flex-col items-center gap-4 hover:border-amber-400/40 hover:bg-zinc-900/80 transition-all duration-300 shrink-0 min-w-[150px]">
-              <img
-                src={url}
-                alt={`Logo ${marca}`}
-                class="h-28 w-auto object-contain"
-                loading="lazy"
-                width="120" height="100"
-              />
-              <span class="text-xs text-zinc-500 font-medium tracking-wide">{marca}</span>
+            <div class="bg-zinc-900 border border-zinc-800/80 rounded-xl px-5 py-4 flex flex-col items-center gap-3 hover:border-amber-400/40 hover:bg-zinc-900/80 transition-all duration-300 shrink-0 w-[140px]">
+              <div class="h-20 w-full flex items-center justify-center">
+                {url ? (
+                  <img src={url} alt={marca} class="h-20 w-auto max-w-full object-contain" loading="lazy" width="100" height="80" />
+                ) : (
+                  <span class="font-display text-2xl text-zinc-600 tracking-wide leading-none text-center">{marca}</span>
+                )}
+              </div>
+              <span class="text-xs text-zinc-500 font-medium tracking-wide text-center">{marca}</span>
             </div>
           );
-        }
-        return (
-          <div class="bg-zinc-900 border border-zinc-800/80 rounded-xl px-8 py-6 flex flex-col items-center justify-center gap-4 hover:border-amber-400/40 transition-all duration-300 shrink-0 min-w-[150px]">
-            <span class="font-display text-3xl text-zinc-600 tracking-wide">{marca}</span>
-            <span class="text-xs text-zinc-600 font-medium tracking-wide">{marca}</span>
-          </div>
-        );
-      })}
+        })}
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════ CATÁLOGO CTA ════════════════════ -->
+<!-- ═══════ CATÁLOGO CTA ═══════ -->
 <section class="py-20 sm:py-28 bg-amber-400 text-black relative overflow-hidden">
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
     <div class="absolute top-10 right-10 w-40 h-40 rounded-full bg-black/5 blur-2xl"></div>
@@ -235,7 +242,7 @@ const logoUrl = (marca: string) => {
   </div>
 </section>
 
-<!-- ════════════════════ CONTACTO ════════════════════ -->
+<!-- ═══════ CONTACTO ═══════ -->
 <section id="contacto" class="py-20 sm:py-28 bg-black relative overflow-hidden">
   <div class="absolute top-0 left-0 right-0 h-px section-divider" aria-hidden="true"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -243,7 +250,6 @@ const logoUrl = (marca: string) => {
     <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 mb-16 leading-[1.05]">DÓNDE ESTAMOS</h2>
 
     <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
-      <!-- Info -->
       <div class="space-y-8">
         <div class="flex items-start gap-4">
           <div class="w-10 h-10 rounded-lg bg-amber-400/10 flex items-center justify-center shrink-0 mt-0.5">
@@ -251,12 +257,9 @@ const logoUrl = (marca: string) => {
           </div>
           <div>
             <h3 class="text-white font-semibold text-sm tracking-wide mb-1.5">Dirección</h3>
-            <p class="text-zinc-400 text-sm leading-relaxed">
-              Polígono Francolí Parcela 15, Nave 5<br>Tarragona 43006
-            </p>
+            <p class="text-zinc-400 text-sm leading-relaxed">Polígono Francolí Parcela 15, Nave 5<br>Tarragona 43006</p>
           </div>
         </div>
-
         <div class="flex items-start gap-4">
           <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center shrink-0 mt-0.5">
             <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -264,13 +267,10 @@ const logoUrl = (marca: string) => {
           <div>
             <h3 class="text-white font-semibold text-sm tracking-wide mb-1.5">WhatsApp Pedidos</h3>
             <a href="https://wa.me/34600781881" target="_blank" rel="noopener noreferrer"
-              class="text-amber-400 hover:text-amber-300 transition-colors text-lg font-semibold">
-              +34 600 781 881
-            </a>
+              class="text-amber-400 hover:text-amber-300 transition-colors text-lg font-semibold">+34 600 781 881</a>
             <p class="text-zinc-500 text-xs mt-1">Respuesta rápida garantizada</p>
           </div>
         </div>
-
         <div class="flex items-start gap-4">
           <div class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center shrink-0 mt-0.5">
             <span class="text-zinc-400 text-sm font-bold" aria-hidden="true">©</span>
@@ -283,7 +283,6 @@ const logoUrl = (marca: string) => {
         </div>
       </div>
 
-      <!-- Mapa / Visual -->
       <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden min-h-[280px] flex items-center justify-center relative group">
         <div class="text-center p-8">
           <span class="text-5xl block mb-4" aria-hidden="true">📍</span>
@@ -299,18 +298,5 @@ const logoUrl = (marca: string) => {
     </div>
   </div>
 </section>
-
-<!-- Scroll reveal -->
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-</script>
 
 </Layout>

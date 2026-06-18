@@ -106,44 +106,53 @@ import Layout from '../layouts/Layout.astro';
     <div class="text-center mb-14">
       <span class="text-amber-400 text-xs sm:text-sm tracking-[.3em] uppercase">Productos</span>
       <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-4 leading-[1.05]">¿QUÉ ENCONTRARÁS?</h2>
-      <p class="text-zinc-500 text-sm sm:text-base max-w-lg mx-auto">Cuatro grandes categorías con las marcas más demandadas por hostelería y retail.</p>
+      <p class="text-zinc-500 text-sm sm:text-base max-w-lg mx-auto">Cinco categorías con las marcas más demandadas por hostelería y retail en Tarragona.</p>
     </div>
 
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
       <!-- Refrescos -->
-      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-6 sm:p-8 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
-        <div class="w-16 h-16 mx-auto mb-5 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
-          <img src="/logos/Coca-Cola.svg" alt="" class="h-12 w-auto object-contain" loading="lazy" aria-hidden="true" />
+      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
+          <img src="/logos/Coca-Cola.svg" alt="" class="h-10 w-auto object-contain" loading="lazy" aria-hidden="true" />
         </div>
-        <h3 class="font-semibold text-white text-sm sm:text-base mb-2">Refrescos</h3>
-        <p class="text-zinc-500 text-xs leading-relaxed">Coca-Cola, Fanta, Nestea, Don Simon, Granini, Juver, Viladrau</p>
+        <h3 class="font-semibold text-white text-sm mb-1.5">Refrescos</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed">Coca-Cola, Fanta, Nestea, Don Simon, Granini, Juver</p>
       </div>
 
       <!-- Aguas -->
-      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-6 sm:p-8 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
-        <div class="w-16 h-16 mx-auto mb-5 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
-          <img src="/logos/Evian.svg" alt="" class="h-12 w-auto object-contain" loading="lazy" aria-hidden="true" />
+      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
+          <img src="/logos/Evian.svg" alt="" class="h-10 w-auto object-contain" loading="lazy" aria-hidden="true" />
         </div>
-        <h3 class="font-semibold text-white text-sm sm:text-base mb-2">Aguas</h3>
-        <p class="text-zinc-500 text-xs leading-relaxed">Font Vella, Evian, Bezoya, Nestlé, Solán de Cabras, Perrier, San Pellegrino</p>
+        <h3 class="font-semibold text-white text-sm mb-1.5">Aguas</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed">Font Vella, Evian, Bezoya, Viladrau, Solán de Cabras, Perrier, San Pellegrino, Vichy Catalan</p>
       </div>
 
       <!-- Cervezas -->
-      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-6 sm:p-8 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
-        <div class="w-16 h-16 mx-auto mb-5 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
-          <img src="/logos/Heineken.svg" alt="" class="h-12 w-auto object-contain" loading="lazy" aria-hidden="true" />
+      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
+          <img src="/logos/Heineken.svg" alt="" class="h-10 w-auto object-contain" loading="lazy" aria-hidden="true" />
         </div>
-        <h3 class="font-semibold text-white text-sm sm:text-base mb-2">Cervezas</h3>
-        <p class="text-zinc-500 text-xs leading-relaxed">Estrella Damm, Heineken, Mahou, San Miguel, Corona, Budweiser, Guinness</p>
+        <h3 class="font-semibold text-white text-sm mb-1.5">Cervezas</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed">Estrella Damm, Heineken, Mahou, San Miguel, Corona, Budweiser, Guinness, Alhambra</p>
       </div>
 
-      <!-- Energéticas + Licores -->
-      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-6 sm:p-8 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
-        <div class="w-16 h-16 mx-auto mb-5 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
-          <img src="/logos/Red-Bull.svg" alt="" class="h-12 w-auto object-contain" loading="lazy" aria-hidden="true" />
+      <!-- Licores -->
+      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
+          <img src="/logos/Brugal.png" alt="" class="h-10 w-auto object-contain" loading="lazy" aria-hidden="true" />
         </div>
-        <h3 class="font-semibold text-white text-sm sm:text-base mb-2">Energéticas + Licores</h3>
-        <p class="text-zinc-500 text-xs leading-relaxed">Red Bull, Powerking, Brugal, Larios, DYC, Kopparberg, Strongbow</p>
+        <h3 class="font-semibold text-white text-sm mb-1.5">Licores</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed">Brugal, Larios, Bodega Pinord, Kopparberg, Strongbow, Magners</p>
+      </div>
+
+      <!-- Energéticas -->
+      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
+          <img src="/logos/Red-Bull.svg" alt="" class="h-10 w-auto object-contain" loading="lazy" aria-hidden="true" />
+        </div>
+        <h3 class="font-semibold text-white text-sm mb-1.5">Energéticas</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed">Red Bull, Powerking, Monster</p>
       </div>
     </div>
   </div>
