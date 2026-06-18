@@ -10,12 +10,12 @@ import Layout from '../layouts/Layout.astro';
 <!-- ═══════ HERO CATÁLOGO ═══════ -->
 <section class="hero-bg pt-20 pb-12 sm:pt-28 sm:pb-16 relative overflow-hidden">
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-    <div class="absolute top-10 right-10 w-60 h-60 rounded-full bg-amber-400/3 blur-3xl"></div>
+    <div class="absolute top-10 right-10 w-60 h-60 rounded-full bg-brand-red/3 blur-3xl"></div>
   </div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-    <div class="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/20 rounded-full px-4 py-1.5 mb-6">
-      <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-      <span class="text-amber-400 text-xs tracking-wider uppercase font-medium">Junio 2026</span>
+    <div class="inline-flex items-center gap-2 bg-brand-red/10 border border-brand-red/20 rounded-full px-4 py-1.5 mb-6">
+      <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+      <span class="text-brand-red text-xs tracking-wider uppercase font-medium">Junio 2026</span>
     </div>
     <h1 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95]">CATÁLOGO</h1>
     <p class="text-zinc-400 mt-4 sm:mt-5 max-w-lg mx-auto text-base sm:text-lg leading-relaxed">
@@ -31,8 +31,8 @@ import Layout from '../layouts/Layout.astro';
     <div class="grid md:grid-cols-5 gap-10 lg:gap-16 items-center">
       <!-- Texto -->
       <div class="md:col-span-3">
-        <span class="text-amber-400 text-xs sm:text-sm tracking-[.3em] uppercase">Descarga</span>
-        <h2 class="font-display text-4xl sm:text-5xl text-amber-400 mt-3 mb-5 leading-[1.05]">CATÁLOGO<br>COMPLETO</h2>
+        <span class="text-brand-red text-xs sm:text-sm tracking-[.3em] uppercase">Descarga</span>
+        <h2 class="font-display text-4xl sm:text-5xl text-brand-red mt-3 mb-5 leading-[1.05]">CATÁLOGO<br>COMPLETO</h2>
         <p class="text-zinc-400 text-base leading-relaxed mb-8 max-w-lg">
           Nuestro catálogo incluye todos los productos disponibles con sus precios actualizados (IVA incluido).
           Ábrelo en una pestaña nueva o descárgalo para consultarlo cuando quieras.
@@ -44,40 +44,40 @@ import Layout from '../layouts/Layout.astro';
             href="/catalogo-junio-2026.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            class="group bg-amber-400 text-black px-8 py-4 font-bold tracking-wider uppercase text-sm text-center hover:bg-amber-300 transition-all duration-200"
+            class="group bg-brand-red text-black px-8 py-4 font-bold tracking-wider uppercase text-sm text-center hover:bg-brand-red-light transition-all duration-200"
           >
             <span class="flex items-center justify-center gap-2">
-              📄 Abrir Catálogo PDF
-              <span class="inline-block transition-transform group-hover:translate-x-0.5" aria-hidden="true">↗</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Abrir Catálogo PDF
+              <span class="inline-block transition-transform group-hover:translate-x-0.5" aria-hidden="true">&#8599;</span>
             </span>
           </a>
           <a
             href="/catalogo-junio-2026.pdf"
             download
-            class="group border border-zinc-700 bg-zinc-900/50 px-8 py-4 text-sm tracking-wider uppercase text-center hover:border-amber-400/50 transition-all duration-200"
+            class="group border border-zinc-700 bg-zinc-900/50 px-8 py-4 text-sm tracking-wider uppercase text-center hover:border-brand-red/50 transition-all duration-200"
           >
-            <span class="flex items-center justify-center gap-2 text-zinc-300 group-hover:text-amber-400 transition-colors">
-              ⬇ Descargar PDF
+            <span class="flex items-center justify-center gap-2 text-zinc-300 group-hover:text-brand-red transition-colors">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg> Descargar PDF
             </span>
           </a>
         </div>
 
         <!-- Info extra -->
         <div class="mt-6 flex flex-wrap gap-4 text-xs text-zinc-600">
-          <span>📄 47 páginas</span>
-          <span>💶 Precios + IVA</span>
-          <span>📅 Actualizado Junio 2026</span>
+          <span class="inline-flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> 47 páginas</span>
+          <span class="inline-flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Precios + IVA</span>
+          <span class="inline-flex items-center gap-1"><svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> Actualizado Junio 2026</span>
         </div>
       </div>
 
       <!-- Visual -->
       <div class="md:col-span-2">
         <div class="relative">
-          <div class="absolute inset-0 bg-amber-400/5 rounded-2xl blur-2xl" aria-hidden="true"></div>
+          <div class="absolute inset-0 bg-brand-red/5 rounded-2xl blur-2xl" aria-hidden="true"></div>
           <div class="relative bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden">
             <div class="bg-zinc-800/50 px-4 py-3 border-b border-zinc-800 flex items-center gap-2">
               <span class="w-3 h-3 rounded-full bg-red-500/60"></span>
-              <span class="w-3 h-3 rounded-full bg-amber-400/60"></span>
+              <span class="w-3 h-3 rounded-full bg-brand-red/60"></span>
               <span class="w-3 h-3 rounded-full bg-green-500/60"></span>
               <span class="text-xs text-zinc-500 ml-2 font-mono">catalogo-junio-2026.pdf</span>
             </div>
@@ -104,15 +104,15 @@ import Layout from '../layouts/Layout.astro';
   <div class="absolute top-0 left-0 right-0 h-px section-divider" aria-hidden="true"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-14">
-      <span class="text-amber-400 text-xs sm:text-sm tracking-[.3em] uppercase">Productos</span>
+      <span class="text-brand-red text-xs sm:text-sm tracking-[.3em] uppercase">Productos</span>
       <h2 class="font-display text-4xl sm:text-5xl mt-3 mb-4 leading-[1.05]">¿QUÉ ENCONTRARÁS?</h2>
       <p class="text-zinc-500 text-sm sm:text-base max-w-lg mx-auto">Cinco categorías con las marcas más demandadas por hostelería y retail en Tarragona.</p>
     </div>
 
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
       <!-- Refrescos -->
-      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
-        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
+      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-brand-red/40 transition-all duration-300 card-lift">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-brand-red/5 transition-colors">
           <img src="/logos/Coca-Cola.svg" alt="" class="h-10 w-auto object-contain" loading="lazy" aria-hidden="true" />
         </div>
         <h3 class="font-semibold text-white text-sm mb-1.5">Refrescos</h3>
@@ -120,8 +120,8 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Aguas -->
-      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
-        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
+      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-brand-red/40 transition-all duration-300 card-lift">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-brand-red/5 transition-colors">
           <img src="/logos/Evian.svg" alt="" class="h-10 w-auto object-contain" loading="lazy" aria-hidden="true" />
         </div>
         <h3 class="font-semibold text-white text-sm mb-1.5">Aguas</h3>
@@ -129,8 +129,8 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Cervezas -->
-      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
-        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
+      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-brand-red/40 transition-all duration-300 card-lift">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-brand-red/5 transition-colors">
           <img src="/logos/Heineken.svg" alt="" class="h-10 w-auto object-contain" loading="lazy" aria-hidden="true" />
         </div>
         <h3 class="font-semibold text-white text-sm mb-1.5">Cervezas</h3>
@@ -138,8 +138,8 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Licores -->
-      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
-        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
+      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-brand-red/40 transition-all duration-300 card-lift">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-brand-red/5 transition-colors">
           <img src="/logos/Brugal.png" alt="" class="h-10 w-auto object-contain" loading="lazy" aria-hidden="true" />
         </div>
         <h3 class="font-semibold text-white text-sm mb-1.5">Licores</h3>
@@ -147,8 +147,8 @@ import Layout from '../layouts/Layout.astro';
       </div>
 
       <!-- Energéticas -->
-      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-amber-400/40 transition-all duration-300 card-lift">
-        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-amber-400/5 transition-colors">
+      <div class="group bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 sm:p-6 text-center hover:border-brand-red/40 transition-all duration-300 card-lift">
+        <div class="w-14 h-14 mx-auto mb-4 rounded-xl bg-zinc-800/50 flex items-center justify-center group-hover:bg-brand-red/5 transition-colors">
           <img src="/logos/Red-Bull.svg" alt="" class="h-10 w-auto object-contain" loading="lazy" aria-hidden="true" />
         </div>
         <h3 class="font-semibold text-white text-sm mb-1.5">Energéticas</h3>
@@ -165,29 +165,29 @@ import Layout from '../layouts/Layout.astro';
     <div class="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-green-500/3 blur-3xl"></div>
   </div>
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-    <span class="text-amber-400 text-xs sm:text-sm tracking-[.3em] uppercase">Pedidos</span>
-    <h2 class="font-display text-4xl sm:text-5xl text-amber-400 mt-3 mb-5 leading-[1.05]">¿CÓMO PEDIR?</h2>
+    <span class="text-brand-red text-xs sm:text-sm tracking-[.3em] uppercase">Pedidos</span>
+    <h2 class="font-display text-4xl sm:text-5xl text-brand-red mt-3 mb-5 leading-[1.05]">¿CÓMO PEDIR?</h2>
     <p class="text-zinc-400 text-base max-w-lg mx-auto mb-8 leading-relaxed">
       Contacta con nosotros por WhatsApp y te preparamos el pedido. Sin aplicaciones, sin registros, sin esperas.
     </p>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10 text-left">
       <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 flex items-start gap-3">
-        <span class="w-7 h-7 rounded-full bg-amber-400 text-black flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</span>
+        <span class="w-7 h-7 rounded-full bg-brand-red text-black flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">1</span>
         <div>
           <p class="text-white text-sm font-semibold">Escríbenos</p>
           <p class="text-zinc-500 text-xs mt-0.5">Cuéntanos qué productos necesitas y cantidades.</p>
         </div>
       </div>
       <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 flex items-start gap-3">
-        <span class="w-7 h-7 rounded-full bg-amber-400 text-black flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</span>
+        <span class="w-7 h-7 rounded-full bg-brand-red text-black flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">2</span>
         <div>
           <p class="text-white text-sm font-semibold">Presupuesto</p>
           <p class="text-zinc-500 text-xs mt-0.5">Te confirmamos precios y disponibilidad al momento.</p>
         </div>
       </div>
       <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-xl p-5 flex items-start gap-3">
-        <span class="w-7 h-7 rounded-full bg-amber-400 text-black flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</span>
+        <span class="w-7 h-7 rounded-full bg-brand-red text-black flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">3</span>
         <div>
           <p class="text-white text-sm font-semibold">Entrega</p>
           <p class="text-zinc-500 text-xs mt-0.5">Recíbelo en tu negocio. Rápido y sin complicaciones.</p>
