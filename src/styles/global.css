@@ -85,6 +85,32 @@
   }
 }
 
+/* ── Marquee — GPU-composited, sin lag ── */
+@keyframes ticker-left {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes ticker-right {
+  0%   { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+.ticker-left  { animation: ticker-left  45s linear infinite; }
+.ticker-right { animation: ticker-right 50s linear infinite; }
+.ticker-wrap {
+  overflow: hidden;
+  contain: layout style;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+}
+.ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+
 /* ── Scroll reveal ── */
 @keyframes reveal-up {
   from { opacity: 0; transform: translateY(28px); }

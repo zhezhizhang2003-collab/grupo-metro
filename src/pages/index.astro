@@ -128,62 +128,67 @@ const logoUrl = (marca: string) => {
   </div>
 </section>
 
-<!-- ════════════════════ MARCAS — Gris claro, Grid estático ════════════════════ -->
-<section id="marcas" class="py-20 sm:py-28 bg-[var(--color-light-alt)] relative">
+<!-- ════════════════════ MARCAS — Cintas por categoría ════════════════════ -->
+<section id="marcas" class="py-20 sm:py-28 bg-[var(--color-light-alt)] relative overflow-hidden">
   <div class="absolute inset-0 accent-dots" aria-hidden="true"></div>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="grid md:grid-cols-3 gap-12 lg:gap-16">
-      <!-- Columna de texto -->
-      <div class="md:col-span-1 reveal">
+
+  <!-- Cabecera -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-12 reveal">
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+      <div>
         <span class="text-brand-red text-xs sm:text-sm tracking-[.3em] uppercase font-semibold">Colaboraciones Oficiales</span>
-        <h2 class="font-display text-3xl sm:text-4xl text-[var(--color-text-dark)] mt-3 mb-4 leading-[1.1] uppercase tracking-tight">
-          Marcas que<br>Distribuimos
+        <h2 class="font-display text-3xl sm:text-4xl text-[var(--color-text-dark)] mt-3 leading-[1.1] uppercase tracking-tight">
+          Marcas que Distribuimos
         </h2>
-        <p class="text-[var(--color-text-muted)] text-sm leading-relaxed mb-6">
-          Trabajamos directamente con más de 50 marcas líderes. Si no encuentras lo que buscas, consúltanos.
-        </p>
-        <a href="/catalogo" class="inline-flex items-center gap-1 text-brand-red text-sm font-semibold hover:text-brand-red-dark transition-colors">
-          Ver catálogo completo <span aria-hidden="true">&rarr;</span>
-        </a>
       </div>
+      <a href="/catalogo" class="inline-flex items-center gap-1 text-brand-red text-sm font-semibold hover:text-brand-red-dark transition-colors shrink-0">
+        Ver catálogo completo &rarr;
+      </a>
+    </div>
+  </div>
 
-      <!-- Grid de logos -->
-      <div class="md:col-span-2 space-y-10 reveal">
-        <!-- Refrescos / Aguas / Zumos -->
-        <div>
-          <h3 class="text-xs tracking-wider uppercase text-brand-blue font-semibold mb-5">Refrescos · Aguas · Zumos</h3>
-          <div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
-            {sinAlcohol.map(marca => {
-              const url = logoUrl(marca);
-              return (
-                <div class="bg-white border border-[var(--color-light-border)] rounded-lg p-3 flex flex-col items-center gap-2 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] hover:border-brand-blue/20 transition-all duration-200">
-                  <div class="h-12 flex items-center justify-center">
-                    {url ? <img src={url} alt={marca} class="h-10 w-auto max-w-full object-contain" loading="lazy" width="60" height="40" /> : <span class="font-display text-sm text-zinc-400">{marca}</span>}
-                  </div>
-                  <span class="text-[10px] sm:text-[11px] text-[var(--color-text-muted)] font-medium text-center leading-tight">{marca}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+  <!-- Cinta 1: Refrescos · Aguas · Zumos -->
+  <div class="relative z-10 mb-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-3">
+      <span class="text-xs tracking-wider uppercase text-brand-blue font-semibold">Refrescos · Aguas · Zumos</span>
+    </div>
+    <div class="ticker-wrap py-3 border-y border-[var(--color-light-border)]">
+      <div class="ticker-track ticker-left gap-3">
+        {[...sinAlcohol, ...sinAlcohol].map((marca, i) => {
+          const url = logoUrl(marca);
+          return (
+            <div class="shrink-0 w-[120px] sm:w-[140px] h-[88px] bg-white border border-[var(--color-light-border)] rounded-lg flex flex-col items-center justify-center gap-1.5 px-2">
+              {url
+                ? <img src={url} alt={marca} width="80" height="48" loading="lazy" decoding="async" class="h-12 w-auto max-w-[96px] object-contain" />
+                : <span class="font-display text-sm text-[var(--color-text-muted)] text-center leading-tight">{marca}</span>
+              }
+              <span class="text-[9px] text-[var(--color-text-muted)] font-medium text-center leading-tight px-1">{marca}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
 
-        <!-- Cervezas / Licores / Sidras / Energéticas -->
-        <div>
-          <h3 class="text-xs tracking-wider uppercase text-brand-red font-semibold mb-5">Cervezas · Licores · Sidras · Energéticas</h3>
-          <div class="grid grid-cols-3 sm:grid-cols-4 gap-3">
-            {conAlcohol.map(marca => {
-              const url = logoUrl(marca);
-              return (
-                <div class="bg-white border border-[var(--color-light-border)] rounded-lg p-3 flex flex-col items-center gap-2 shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-md)] hover:border-brand-red/20 transition-all duration-200">
-                  <div class="h-12 flex items-center justify-center">
-                    {url ? <img src={url} alt={marca} class="h-10 w-auto max-w-full object-contain" loading="lazy" width="60" height="40" /> : <span class="font-display text-sm text-zinc-400">{marca}</span>}
-                  </div>
-                  <span class="text-[10px] sm:text-[11px] text-[var(--color-text-muted)] font-medium text-center leading-tight">{marca}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+  <!-- Cinta 2: Cervezas · Licores · Sidras · Energéticas -->
+  <div class="relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-3">
+      <span class="text-xs tracking-wider uppercase text-brand-red font-semibold">Cervezas · Licores · Sidras · Energéticas</span>
+    </div>
+    <div class="ticker-wrap py-3 border-y border-[var(--color-light-border)]">
+      <div class="ticker-track ticker-right gap-3">
+        {[...conAlcohol, ...conAlcohol].map((marca, i) => {
+          const url = logoUrl(marca);
+          return (
+            <div class="shrink-0 w-[120px] sm:w-[140px] h-[88px] bg-white border border-[var(--color-light-border)] rounded-lg flex flex-col items-center justify-center gap-1.5 px-2">
+              {url
+                ? <img src={url} alt={marca} width="80" height="48" loading="lazy" decoding="async" class="h-12 w-auto max-w-[96px] object-contain" />
+                : <span class="font-display text-sm text-[var(--color-text-muted)] text-center leading-tight">{marca}</span>
+              }
+              <span class="text-[9px] text-[var(--color-text-muted)] font-medium text-center leading-tight px-1">{marca}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   </div>
