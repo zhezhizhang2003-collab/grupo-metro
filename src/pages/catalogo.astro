@@ -10,6 +10,12 @@ import Layout from '../layouts/Layout.astro';
 <!-- ═══════ HERO ═══════ -->
 <section class="hero-bg pt-20 pb-12 sm:pt-28 sm:pb-16 relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center justify-center gap-2 text-xs text-zinc-500 mb-8" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-zinc-300 transition-colors">Inicio</a>
+      <span aria-hidden="true">/</span>
+      <span class="text-zinc-300">Catálogo</span>
+    </nav>
     <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-6">
       <span class="w-2 h-2 rounded-full bg-brand-red"></span>
       <span class="text-zinc-300 text-xs tracking-wider uppercase font-medium">Junio 2026</span>
@@ -169,6 +175,29 @@ import Layout from '../layouts/Layout.astro';
       Pedir por WhatsApp
     </a>
     <p class="text-zinc-500 text-xs mt-4">+34 600 781 881 · Respuesta rápida garantizada</p>
+  </div>
+</section>
+
+<!-- ═══════ NAVEGACIÓN CRUZADA — Blanco ═══════ -->
+<section class="py-12 sm:py-16 bg-[var(--color-light)] border-t border-[var(--color-light-border)]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <a href="/" class="inline-flex items-center gap-2 text-[var(--color-text-muted)] hover:text-brand-red transition-colors text-sm font-medium group">
+        <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        Volver al inicio
+      </a>
+      <div class="text-center">
+        <p class="text-[var(--color-text-muted)] text-xs">¿Tienes alguna pregunta sobre nuestros productos?</p>
+        <a href="https://wa.me/34600781881" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-brand-red hover:text-brand-red-dark transition-colors text-sm font-semibold mt-1">
+          Contáctanos por WhatsApp <span aria-hidden="true">&#8599;</span>
+        </a>
+      </div>
+      <a href="/#quienes-somos" class="inline-flex items-center gap-2 text-[var(--color-text-muted)] hover:text-brand-red transition-colors text-sm font-medium group">
+        Quiénes Somos
+        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
