@@ -3,106 +3,106 @@
 @theme {
   --font-display: 'Oswald', sans-serif;
   --font-body: 'Inter', sans-serif;
-  /* Paleta del logo — aclarada */
+
+  /* Brand colors — unchanged from logo */
   --color-brand-red: #d9445a;
   --color-brand-red-light: #e87485;
+  --color-brand-red-dark: #c03950;
   --color-brand-blue: #5856c0;
   --color-brand-blue-light: #7a78d5;
-  /* Fondos — navy oscuro (reemplaza negro) */
-  --color-surface: #0d0f24;
-  --color-surface-alt: #121530;
-  --color-surface-card: #1a1d40;
-  --color-surface-card-hover: #222658;
-  /* Bordes */
-  --color-border: #23264a;
-  --color-border-light: #2d3160;
+
+  /* ===== DARK SURFACES ===== */
+  --color-dark: #0a0c1e;
+  --color-dark-alt: #0f1130;
+  --color-dark-card: #151838;
+  --color-dark-border: #1f2250;
+
+  /* ===== LIGHT SURFACES ===== */
+  --color-light: #ffffff;
+  --color-light-alt: #f7f7fb;
+  --color-light-card: #f0f0f6;
+  --color-light-border: #e0e1ec;
+
+  /* ===== TEXT ===== */
+  --color-text-dark: #11142a;
+  --color-text-muted: #5c5f78;
+
+  /* ===== SHADOWS ===== */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-xl: 0 8px 30px rgba(0,0,0,0.08);
 }
 
 @layer base {
   body {
     font-family: var(--font-body);
-    background: var(--color-surface);
+    background: var(--color-dark);
     color: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   ::selection { background: var(--color-brand-red); color: #fff; }
   :focus-visible { outline: 2px solid var(--color-brand-red); outline-offset: 2px; border-radius: 4px; }
+
   ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: var(--color-surface); }
-  ::-webkit-scrollbar-thumb { background: var(--color-surface-card); border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--color-surface-card-hover); }
+  ::-webkit-scrollbar-track { background: var(--color-dark); }
+  ::-webkit-scrollbar-thumb { background: var(--color-dark-card); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-dark-border); }
 }
 
 @layer utilities {
   .hero-bg {
-    background: linear-gradient(135deg, var(--color-surface) 0%, #111332 40%, #0e1130 70%, var(--color-surface) 100%);
+    background: linear-gradient(160deg, #080a1a 0%, var(--color-dark) 30%, var(--color-dark-alt) 60%, var(--color-dark) 100%);
   }
   .text-balance { text-wrap: balance; }
+
+  /* Subtle geometric accent — replaces blur orbs */
+  .accent-line {
+    position: absolute; pointer-events: none;
+  }
+  .accent-dots {
+    background-image: radial-gradient(var(--color-light-border) 0.5px, transparent 0.5px);
+    background-size: 20px 20px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* Nav link underline */
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 2px; background: var(--color-brand-red);
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after { width: 100%; }
+
+  /* Section divider */
   .section-divider {
     background: linear-gradient(90deg, transparent 0%, var(--color-brand-red) 50%, transparent 100%);
-    height: 1px; opacity: 0.2;
+    height: 1px; opacity: 0.15;
   }
-  .section-divider-blue {
-    background: linear-gradient(90deg, transparent 0%, var(--color-brand-blue) 50%, transparent 100%);
-    height: 1px; opacity: 0.2;
-  }
-  .marquee-mask {
-    mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
-  }
-  .card-lift {
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  }
-  .card-lift:hover { transform: translateY(-2px); }
 }
 
-/* ── Marquee GPU ── */
-@keyframes marquee {
-  0%   { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-50%, 0, 0); }
+/* ── Scroll reveal ── */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-.animate-marquee {
-  animation: marquee 50s linear infinite;
-  will-change: transform; backface-visibility: hidden;
+.reveal { opacity: 0; }
+.reveal.visible {
+  animation: reveal-up 0.7s ease-out forwards;
 }
-@keyframes marquee-reverse {
-  0%   { transform: translate3d(-50%, 0, 0); }
-  100% { transform: translate3d(0, 0, 0); }
-}
-.animate-marquee-reverse {
-  animation: marquee-reverse 55s linear infinite;
-  will-change: transform; backface-visibility: hidden;
-}
-.marquee-pause:hover .animate-marquee,
-.marquee-pause:hover .animate-marquee-reverse { animation-play-state: paused; }
-
-/* ── Nav underline ── */
-.nav-link { position: relative; }
-.nav-link::after {
-  content: ''; position: absolute; bottom: -4px; left: 0;
-  width: 0; height: 2px; background: var(--color-brand-red);
-  transition: width 0.25s ease;
-}
-.nav-link:hover::after,
-.nav-link[aria-current="page"]::after { width: 100%; }
 
 /* ── Prose legal ── */
 .prose-legal h2 {
-  font-family: var(--font-display); font-weight: 400; color: #fff;
+  font-family: var(--font-display); font-weight: 400; color: var(--color-text-dark);
   margin-top: 2.5em; margin-bottom: 0.75em; letter-spacing: 0.02em;
 }
 .prose-legal h2:first-child { margin-top: 0; }
 .prose-legal a { color: var(--color-brand-red); text-decoration: none; transition: color 0.2s; }
-.prose-legal a:hover { color: var(--color-brand-red-light); }
-.prose-legal strong { color: #fff; }
-.prose-legal ul { color: #d1d5db; }
-.prose-legal p { color: #a1a1aa; }
-
-/* ── Pulse ring ── */
-@keyframes pulse-ring-red {
-  0%   { box-shadow: 0 0 0 0 rgba(217, 68, 90, 0.4); }
-  70%  { box-shadow: 0 0 0 12px rgba(217, 68, 90, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(217, 68, 90, 0); }
-}
-.pulse-ring { animation: pulse-ring-red 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.prose-legal a:hover { color: var(--color-brand-red-dark); }
+.prose-legal strong { color: var(--color-text-dark); }
+.prose-legal ul { color: var(--color-text-muted); }
+.prose-legal p { color: var(--color-text-muted); }
