@@ -200,7 +200,7 @@ const logoUrl = (marca: string) => {
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal">
     <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
-      <!-- Lista de contenido del catálogo -->
+      <!-- Categorías del catálogo -->
       <div>
         <span class="text-white/60 text-xs tracking-[.3em] uppercase font-semibold">Junio 2026</span>
         <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-3 leading-[1.0] uppercase tracking-tight">
@@ -208,14 +208,15 @@ const logoUrl = (marca: string) => {
         </h2>
         <ul class="mt-6 space-y-3">
           {[
-            { icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', text: '47 páginas de productos' },
-            { icon: 'M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z', text: 'Precios + IVA actualizados' },
-            { icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', text: 'Descarga gratuita en PDF' },
-            { icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15', text: 'Actualizado cada mes' },
+            { text: 'Refrescos', sub: 'Coca-Cola, Fanta, Nestea, Granini, Don Simon...' },
+            { text: 'Aguas', sub: 'Font Vella, Evian, Bezoya, Perrier, San Pellegrino...' },
+            { text: 'Cervezas', sub: 'Estrella Damm, Heineken, Mahou, Corona, Guinness...' },
+            { text: 'Licores y Sidras', sub: 'Brugal, Larios, Kopparberg, Strongbow, Magners...' },
+            { text: 'Energéticas', sub: 'Red Bull, Powerking...' },
           ].map(item => (
-            <li class="flex items-center gap-3 text-white/80 text-sm">
-              <svg class="w-4 h-4 text-white/40 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d={item.icon}/></svg>
-              {item.text}
+            <li class="flex items-start gap-3 text-white/80 text-sm">
+              <span class="mt-1 w-1.5 h-1.5 rounded-full bg-white/30 shrink-0"></span>
+              <span><span class="font-semibold text-white">{item.text}</span> — <span class="text-white/50">{item.sub}</span></span>
             </li>
           ))}
         </ul>
@@ -224,7 +225,7 @@ const logoUrl = (marca: string) => {
       <!-- CTA -->
       <div class="text-center md:text-left">
         <p class="text-white/70 text-base sm:text-lg leading-relaxed mb-8">
-          Todo lo que necesitas para hacer tu pedido. Refrescos, aguas, cervezas, licores y más.
+          47 páginas con precios + IVA actualizados. Descarga gratuita en PDF.
         </p>
         <a href="/catalogo"
           class="inline-flex items-center gap-2 bg-white text-brand-red px-10 py-5 font-bold tracking-wider uppercase text-sm hover:bg-zinc-100 transition-colors">
