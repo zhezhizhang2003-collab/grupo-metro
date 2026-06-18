@@ -5,6 +5,7 @@
   --font-body: 'Inter', sans-serif;
   --color-brand: #f59e0b;
   --color-brand-light: #fbbf24;
+  --color-brand-dim: #d97706;
 }
 
 @layer base {
@@ -15,28 +16,170 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
   ::selection {
     background: var(--color-brand);
     color: #000;
   }
+
+  /* Focus visible global */
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+  }
 }
 
 @layer utilities {
+  /* Hero gradient — manteniendo Industrial Bold */
   .hero-bg {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    background: linear-gradient(135deg, #0a0a0a 0%, #111827 40%, #0f172a 70%, #0a0a0a 100%);
   }
+
+  /* Text balance */
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Section divider opcional */
+  .section-divider {
+    background: linear-gradient(90deg, transparent 0%, var(--color-brand) 50%, transparent 100%);
+    height: 1px;
+    opacity: 0.2;
+  }
+
+  /* Gradient mask para marquee edges */
+  .marquee-mask {
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      black 5%,
+      black 95%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      black 5%,
+      black 95%,
+      transparent 100%
+    );
+  }
+
+  /* Card hover lift */
+  .card-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(245, 158, 11, 0.06);
+  }
 }
 
+/* ── Marquee Animation ── */
 @keyframes marquee {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
 .animate-marquee {
-  animation: marquee 35s linear infinite;
+  animation: marquee 40s linear infinite;
 }
-.marquee-pause:hover .animate-marquee {
+
+.marquee-pause:hover .animate-marquee,
+.marquee-pause:hover .animate-marquee-reverse {
   animation-play-state: paused;
+}
+
+@keyframes marquee-reverse {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.animate-marquee-reverse {
+  animation: marquee-reverse 50s linear infinite;
+}
+
+/* ── Nav link underline animation ── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-brand);
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  width: 100%;
+}
+
+/* ── Prose overrides para páginas legales ── */
+.prose-legal h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: #fff;
+  margin-top: 2.5em;
+  margin-bottom: 0.75em;
+  letter-spacing: 0.02em;
+}
+.prose-legal h2:first-child {
+  margin-top: 0;
+}
+.prose-legal a {
+  color: var(--color-brand);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.prose-legal a:hover {
+  color: var(--color-brand-light);
+}
+.prose-legal strong {
+  color: #fff;
+}
+.prose-legal ul {
+  color: #d1d5db;
+}
+.prose-legal p {
+  color: #a1a1aa;
+}
+
+/* ── Fade in on scroll (para JS opcional) ── */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Pulse ring para el CTA ── */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+  70%  { box-shadow: 0 0 0 12px rgba(245, 158, 11, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+.pulse-ring {
+  animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

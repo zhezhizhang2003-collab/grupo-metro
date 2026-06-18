@@ -10,111 +10,202 @@ const marcas = [
 ];
 const marcasDoble = [...marcas, ...marcas];
 
-// Logos — prefiere SVG (vectorial, más nítido), fallback a PNG
 const logoUrl = (marca: string) => {
   const file = marca.replace(/ /g, '-').replace(/ñ/g, 'n').replace(/é/g, 'e').replace(/á/g, 'a').replace(/ó/g, 'o').replace(/í/g, 'i').replace(/ú/g, 'u').replace(/'/g, '');
-  // SVG: vectoriales, siempre nítidos a cualquier tamaño
-  const logosSvg = ['Coca-Cola','Heineken'];
-  // PNG: logos rasterizados a 200px
+  // SVG vectoriales — siempre nítidos
+  const logosSvg = [
+    'Alhambra','Budweiser','Coca-Cola','Coors','Corona','Desperados',
+    'Estrella-Damm','Estrella-Galicia','Evian','Fanta','Granini','Guinness',
+    'Heineken','Kopparberg','Mahou','Nestea','Nestle','Perrier',
+    'Red-Bull','San-Miguel','San-Pellegrino'
+  ];
+  // PNG 400px — únicos, correctos
   const logosPng = [
-    'Alhambra','Bezoya','Bodega-Pinord','Brugal','Budweiser','Coors','Corona','Desperados',
-    'Don-Simon','Estrella-Damm','Estrella-Galicia','Evian','Fanta','Font-Vella',
-    'Granini','Guinness','Juver','Kopparberg','Larios','Magners','Nestea','Nestle',
-    'Powerking','Red-Bull','San-Miguel','San-Pellegrino','Solan-de-Cabras',
-    'Strongbow','Vichy-Catalan','Viladrau','Mahou','Perrier','Voll-Damm'
+    'Bezoya','Bodega-Pinord','Brugal','Don-Simon','Font-Vella','Juver','Larios',
+    'Magners','Powerking','Solan-de-Cabras','Strongbow','Vichy-Catalan','Viladrau','Voll-Damm'
   ];
   if (logosSvg.includes(file)) return `/logos/${file}.svg`;
   if (logosPng.includes(file)) return `/logos/${file}.png`;
-  return null;
+  return null; // sin logo → tarjeta de texto
 };
 ---
 
 <Layout
   title="Inicio"
-  description="Grupo METRO — Distribución de bebidas a restauración y supermercados en Tarragona. +50 marcas líderes. Coca-Cola, Estrella Damm, Heineken, Red Bull y más."
+  description="Grupo METRO — Distribución de bebidas a restauración y supermercados en Tarragona. +50 marcas líderes: Coca-Cola, Estrella Damm, Heineken, Red Bull y más."
+  ogImage="/logo.jpg"
 >
 
-<!-- Hero -->
-<section class="hero-bg min-h-screen flex items-center pt-16">
-  <div class="max-w-7xl mx-auto px-4 w-full">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
+<!-- ════════════════════ HERO ════════════════════ -->
+<section class="hero-bg min-h-[calc(100vh-4rem)] flex items-center relative overflow-hidden">
+  <!-- Decoración sutil de fondo -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-amber-400/3 blur-3xl"></div>
+    <div class="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-amber-400/3 blur-3xl"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 md:py-24 relative z-10">
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Texto -->
       <div>
-        <span class="text-amber-400 text-sm tracking-[.3em] uppercase">Distribución · Tarragona</span>
-        <h1 class="font-display text-6xl md:text-8xl leading-none mt-4 text-balance">
+        <div class="inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/20 rounded-full px-4 py-1.5 mb-6">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          <span class="text-amber-400 text-xs tracking-wider uppercase font-medium">Distribución · Tarragona</span>
+        </div>
+
+        <h1 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] text-balance">
           LÍDERES EN<br>
           <span class="text-amber-400">DISTRIBUCIÓN</span>
         </h1>
-        <p class="text-zinc-400 mt-6 text-lg max-w-md">
+
+        <p class="text-zinc-400 mt-6 text-base sm:text-lg max-w-lg leading-relaxed">
           Llevamos las mejores marcas a restaurantes, bares y supermercados de Tarragona.
           Coca-Cola, Estrella Damm, Heineken, Red Bull y mucho más.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 mt-8">
-          <a href="/catalogo" class="bg-amber-400 text-black px-8 py-4 font-semibold tracking-wider uppercase text-sm text-center hover:bg-amber-300 transition">
-            Ver Catálogo
+
+        <div class="flex flex-col sm:flex-row gap-3 mt-8">
+          <a href="/catalogo"
+            class="group bg-amber-400 text-black px-8 py-4 font-bold tracking-wider uppercase text-sm text-center hover:bg-amber-300 transition-all duration-200 pulse-ring">
+            <span class="flex items-center justify-center gap-2">
+              Ver Catálogo
+              <span class="inline-block transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+            </span>
           </a>
-          <a href="https://wa.me/34600781881" class="border border-zinc-700 px-8 py-4 text-sm tracking-wider uppercase text-center hover:border-amber-400 transition">
-            WhatsApp
+          <a href="https://wa.me/34600781881" target="_blank" rel="noopener noreferrer"
+            class="group border border-zinc-700 bg-zinc-900/50 px-8 py-4 text-sm tracking-wider uppercase text-center hover:border-amber-400/50 hover:bg-zinc-900 transition-all duration-200">
+            <span class="flex items-center justify-center gap-2 text-zinc-300 group-hover:text-amber-400 transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
+            </span>
           </a>
         </div>
       </div>
+
+      <!-- Visual -->
       <div class="hidden md:block">
-        <img
-          src="/logo.jpg"
-          alt="Grupo Metro Logo"
-          class="w-full max-w-sm mx-auto rounded-2xl opacity-90"
-          width="400" height="200"
-          loading="eager"
-        />
-        <div class="grid grid-cols-3 gap-3 mt-8">
-          <div class="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-3 text-center text-xs text-zinc-400">Coca-Cola</div>
-          <div class="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-3 text-center text-xs text-zinc-400">Estrella Damm</div>
-          <div class="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-3 text-center text-xs text-zinc-400">Heineken</div>
-          <div class="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-3 text-center text-xs text-zinc-400">Red Bull</div>
-          <div class="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-3 text-center text-xs text-zinc-400">Nestlé</div>
-          <div class="bg-zinc-800/50 border border-zinc-700/50 rounded-lg p-3 text-center text-xs text-zinc-400">Font Vella</div>
+        <div class="relative">
+          <!-- Logo con glow -->
+          <div class="absolute inset-0 bg-amber-400/10 rounded-3xl blur-2xl" aria-hidden="true"></div>
+          <img
+            src="/logo.jpg"
+            alt="Logo Grupo METRO — Distribuidora de bebidas en Tarragona"
+            class="relative w-full max-w-sm mx-auto rounded-2xl"
+            width="400" height="200"
+            loading="eager"
+          />
+        </div>
+        <!-- Mini grid de marcas top -->
+        <div class="grid grid-cols-3 gap-2.5 mt-10">
+          {['Coca-Cola','Estrella Damm','Heineken','Red Bull','Nestlé','Font Vella'].map(marca => (
+            <div class="bg-zinc-900/80 border border-zinc-800/80 rounded-lg px-3 py-2.5 text-center text-xs text-zinc-400 font-medium hover:border-amber-400/30 hover:text-amber-400/80 transition-all duration-200">
+              {marca}
+            </div>
+          ))}
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Quiénes Somos -->
-<section class="py-24 bg-black">
-  <div class="max-w-7xl mx-auto px-4">
-    <span class="text-amber-400 text-sm tracking-[.3em] uppercase">Quiénes Somos</span>
-    <h2 class="font-display text-5xl mt-4 text-balance">DISTRIBUCIÓN QUE<br>IMPULSA TU NEGOCIO</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12">
-      <div class="border-l-2 border-amber-400 pl-6">
-        <div class="text-3xl font-display text-amber-400">+50</div>
-        <p class="text-zinc-400 mt-2 text-sm">Marcas oficiales con las que colaboramos directamente</p>
+<!-- ════════════════════ QUIÉNES SOMOS ════════════════════ -->
+<section class="py-20 sm:py-28 bg-black relative overflow-hidden">
+  <div class="absolute top-0 left-0 right-0 h-px section-divider" aria-hidden="true"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <span class="text-amber-400 text-xs sm:text-sm tracking-[.3em] uppercase">Quiénes Somos</span>
+    <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 mb-4 text-balance leading-[1.05]">
+      DISTRIBUCIÓN QUE<br>IMPULSA TU NEGOCIO
+    </h2>
+    <p class="text-zinc-500 text-base max-w-2xl mb-14">
+      Somos el puente entre las grandes marcas y tu establecimiento. Rapidez, cercanía y un catálogo que no para de crecer.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
+      <div class="group bg-zinc-900/50 border border-zinc-800/80 rounded-xl p-6 sm:p-8 hover:border-amber-400/30 transition-all duration-300 card-lift">
+        <div class="w-12 h-12 rounded-lg bg-amber-400/10 flex items-center justify-center mb-5 group-hover:bg-amber-400/15 transition-colors">
+          <span class="text-2xl" aria-hidden="true">🏭</span>
+        </div>
+        <div class="text-4xl font-display text-amber-400 mb-2">+50</div>
+        <p class="text-zinc-400 text-sm leading-relaxed">Marcas oficiales con las que colaboramos directamente, desde refrescos hasta licores premium.</p>
       </div>
-      <div class="border-l-2 border-amber-400 pl-6">
-        <div class="text-3xl font-display text-amber-400">Tarragona</div>
-        <p class="text-zinc-400 mt-2 text-sm">Cobertura completa en restauración, bares y supermercados</p>
+
+      <div class="group bg-zinc-900/50 border border-zinc-800/80 rounded-xl p-6 sm:p-8 hover:border-amber-400/30 transition-all duration-300 card-lift">
+        <div class="w-12 h-12 rounded-lg bg-amber-400/10 flex items-center justify-center mb-5 group-hover:bg-amber-400/15 transition-colors">
+          <span class="text-2xl" aria-hidden="true">📍</span>
+        </div>
+        <div class="text-4xl font-display text-amber-400 mb-2">Tarragona</div>
+        <p class="text-zinc-400 text-sm leading-relaxed">Cobertura completa en toda la provincia: restauración, bares, supermercados y tiendas de conveniencia.</p>
       </div>
-      <div class="border-l-2 border-amber-400 pl-6">
-        <div class="text-3xl font-display text-amber-400">24/7</div>
-        <p class="text-zinc-400 mt-2 text-sm">Pedidos por WhatsApp con respuesta ágil y entrega rápida</p>
+
+      <div class="group bg-zinc-900/50 border border-zinc-800/80 rounded-xl p-6 sm:p-8 hover:border-amber-400/30 transition-all duration-300 card-lift">
+        <div class="w-12 h-12 rounded-lg bg-amber-400/10 flex items-center justify-center mb-5 group-hover:bg-amber-400/15 transition-colors">
+          <span class="text-2xl" aria-hidden="true">⚡</span>
+        </div>
+        <div class="text-4xl font-display text-amber-400 mb-2">24/7</div>
+        <p class="text-zinc-400 text-sm leading-relaxed">Pedidos por WhatsApp con respuesta ágil. Tu negocio no espera, nosotros tampoco.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Marcas — Marquee animado -->
-<section class="py-24 bg-zinc-950 overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 mb-12">
-    <span class="text-amber-400 text-sm tracking-[.3em] uppercase">Colaboraciones Oficiales</span>
-    <h2 class="font-display text-5xl mt-4">MARCAS QUE DISTRIBUIMOS</h2>
+<!-- ════════════════════ MARCAS — Marquee ════════════════════ -->
+<section class="py-20 sm:py-28 bg-zinc-950 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+    <span class="text-amber-400 text-xs sm:text-sm tracking-[.3em] uppercase">Colaboraciones Oficiales</span>
+    <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 leading-[1.05]">MARCAS QUE<br>DISTRIBUIMOS</h2>
   </div>
 
-  <div class="marquee-pause py-10 border-y border-zinc-800/50">
-    <div class="animate-marquee flex gap-6 w-max">
-      {marcasDoble.map((marca, i) => {
+  <!-- Cinta 1 — dirección normal -->
+  <div class="marquee-pause py-8 border-y border-zinc-800/30 mb-1 marquee-mask">
+    <div class="animate-marquee flex gap-5 w-max">
+      {marcasDoble.map((marca) => {
         const url = logoUrl(marca);
+        if (url) {
+          return (
+            <div class="bg-zinc-900 border border-zinc-800/80 rounded-xl px-8 py-6 flex flex-col items-center gap-4 hover:border-amber-400/40 hover:bg-zinc-900/80 transition-all duration-300 shrink-0 min-w-[150px]">
+              <img
+                src={url}
+                alt={`Logo ${marca}`}
+                class="h-28 w-auto object-contain"
+                loading="lazy"
+                width="120" height="100"
+              />
+              <span class="text-xs text-zinc-500 font-medium tracking-wide">{marca}</span>
+            </div>
+          );
+        }
         return (
-          <div class="bg-zinc-900 border border-zinc-800 rounded-xl px-10 py-8 flex flex-col items-center gap-5 whitespace-nowrap hover:border-amber-400/50 transition shrink-0 min-w-[170px]">
-            <img src={url} alt={marca} class="h-32 w-auto object-contain" loading="lazy" />
-            <span class="text-xs text-zinc-500 font-medium tracking-wide">{marca}</span>
+          <div class="bg-zinc-900 border border-zinc-800/80 rounded-xl px-8 py-6 flex flex-col items-center justify-center gap-4 hover:border-amber-400/40 transition-all duration-300 shrink-0 min-w-[150px]">
+            <span class="font-display text-3xl text-zinc-600 tracking-wide">{marca}</span>
+            <span class="text-xs text-zinc-600 font-medium tracking-wide">{marca}</span>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  <!-- Cinta 2 — dirección invertida, más lenta -->
+  <div class="marquee-pause py-8 marquee-mask">
+    <div class="animate-marquee-reverse flex gap-5 w-max">
+      {[...marcas].reverse().map((marca) => {
+        const url = logoUrl(marca);
+        if (url) {
+          return (
+            <div class="bg-zinc-900 border border-zinc-800/80 rounded-xl px-8 py-6 flex flex-col items-center gap-4 hover:border-amber-400/40 hover:bg-zinc-900/80 transition-all duration-300 shrink-0 min-w-[150px]">
+              <img
+                src={url}
+                alt={`Logo ${marca}`}
+                class="h-28 w-auto object-contain"
+                loading="lazy"
+                width="120" height="100"
+              />
+              <span class="text-xs text-zinc-500 font-medium tracking-wide">{marca}</span>
+            </div>
+          );
+        }
+        return (
+          <div class="bg-zinc-900 border border-zinc-800/80 rounded-xl px-8 py-6 flex flex-col items-center justify-center gap-4 hover:border-amber-400/40 transition-all duration-300 shrink-0 min-w-[150px]">
+            <span class="font-display text-3xl text-zinc-600 tracking-wide">{marca}</span>
+            <span class="text-xs text-zinc-600 font-medium tracking-wide">{marca}</span>
           </div>
         );
       })}
@@ -122,49 +213,104 @@ const logoUrl = (marca: string) => {
   </div>
 </section>
 
-<!-- Catálogo CTA -->
-<section class="py-24 bg-amber-400 text-black">
-  <div class="max-w-7xl mx-auto px-4 text-center">
-    <h2 class="font-display text-5xl md:text-7xl">CATÁLOGO JUNIO 2026</h2>
-    <p class="text-lg mt-4 max-w-xl mx-auto opacity-80">
+<!-- ════════════════════ CATÁLOGO CTA ════════════════════ -->
+<section class="py-20 sm:py-28 bg-amber-400 text-black relative overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-10 right-10 w-40 h-40 rounded-full bg-black/5 blur-2xl"></div>
+    <div class="absolute bottom-10 left-10 w-60 h-60 rounded-full bg-black/5 blur-3xl"></div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+    <span class="text-black/60 text-xs sm:text-sm tracking-[.3em] uppercase">Junio 2026</span>
+    <h2 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl mt-4 leading-[0.95]">
+      CATÁLOGO<br class="sm:hidden"> JUNIO 2026
+    </h2>
+    <p class="text-lg sm:text-xl mt-5 max-w-xl mx-auto text-black/70 leading-relaxed">
       Explora todos nuestros productos con precios actualizados. Nuevas incorporaciones cada mes.
     </p>
-    <a href="/catalogo" class="inline-block bg-black text-amber-400 px-10 py-5 mt-8 font-semibold tracking-wider uppercase text-sm hover:bg-zinc-900 transition">
+    <a href="/catalogo"
+      class="inline-flex items-center gap-2 bg-black text-amber-400 px-10 py-5 mt-10 font-bold tracking-wider uppercase text-sm hover:bg-zinc-900 hover:text-amber-300 transition-all duration-200">
       Ver Catálogo Completo
+      <span aria-hidden="true">→</span>
     </a>
   </div>
 </section>
 
-<!-- Contacto -->
-<section id="contacto" class="py-24 bg-black">
-  <div class="max-w-7xl mx-auto px-4">
-    <span class="text-amber-400 text-sm tracking-[.3em] uppercase">Contacto</span>
-    <h2 class="font-display text-5xl mt-4 mb-12">DÓNDE ESTAMOS</h2>
-    <div class="grid md:grid-cols-2 gap-12">
-      <div>
-        <div class="space-y-6 text-zinc-400">
-          <div>
-            <h3 class="text-white font-semibold mb-1">Dirección</h3>
-            <p>Polígono Francolí Parcela 15, Nave 5<br>Tarragona 43006</p>
+<!-- ════════════════════ CONTACTO ════════════════════ -->
+<section id="contacto" class="py-20 sm:py-28 bg-black relative overflow-hidden">
+  <div class="absolute top-0 left-0 right-0 h-px section-divider" aria-hidden="true"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <span class="text-amber-400 text-xs sm:text-sm tracking-[.3em] uppercase">Contacto</span>
+    <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 mb-16 leading-[1.05]">DÓNDE ESTAMOS</h2>
+
+    <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
+      <!-- Info -->
+      <div class="space-y-8">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-amber-400/10 flex items-center justify-center shrink-0 mt-0.5">
+            <span class="text-lg" aria-hidden="true">📍</span>
           </div>
           <div>
-            <h3 class="text-white font-semibold mb-1">WhatsApp Pedidos</h3>
-            <a href="https://wa.me/34600781881" class="text-amber-400 hover:text-amber-300 transition text-lg">+34 600 781 881</a>
+            <h3 class="text-white font-semibold text-sm tracking-wide mb-1.5">Dirección</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+              Polígono Francolí Parcela 15, Nave 5<br>Tarragona 43006
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center shrink-0 mt-0.5">
+            <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           </div>
           <div>
-            <h3 class="text-white font-semibold mb-1">Datos Fiscales</h3>
-            <p>Mehar Company SL<br>CIF: B05412028</p>
+            <h3 class="text-white font-semibold text-sm tracking-wide mb-1.5">WhatsApp Pedidos</h3>
+            <a href="https://wa.me/34600781881" target="_blank" rel="noopener noreferrer"
+              class="text-amber-400 hover:text-amber-300 transition-colors text-lg font-semibold">
+              +34 600 781 881
+            </a>
+            <p class="text-zinc-500 text-xs mt-1">Respuesta rápida garantizada</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center shrink-0 mt-0.5">
+            <span class="text-zinc-400 text-sm font-bold" aria-hidden="true">©</span>
+          </div>
+          <div>
+            <h3 class="text-white font-semibold text-sm tracking-wide mb-1.5">Datos Fiscales</h3>
+            <p class="text-zinc-400 text-sm">Mehar Company SL</p>
+            <p class="text-zinc-500 text-xs">CIF: B05412028</p>
           </div>
         </div>
       </div>
-      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex items-center justify-center min-h-[250px]">
-        <div class="text-center text-zinc-500">
-          <span class="text-4xl block mb-2">📍</span>
-          Polígono Francolí Parcela 15, Nave 5<br>Tarragona 43006
+
+      <!-- Mapa / Visual -->
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden min-h-[280px] flex items-center justify-center relative group">
+        <div class="text-center p-8">
+          <span class="text-5xl block mb-4" aria-hidden="true">📍</span>
+          <p class="text-zinc-400 font-medium">Polígono Francolí Parcela 15, Nave 5</p>
+          <p class="text-zinc-500 text-sm mt-1">Tarragona 43006</p>
+          <a href="https://maps.google.com/?q=Polígono+Francolí+Parcela+15+Nave+5+Tarragona+43006"
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-1 mt-5 text-xs text-amber-400 hover:text-amber-300 transition-colors tracking-wider uppercase font-semibold">
+            Ver en Google Maps <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Scroll reveal -->
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 
 </Layout>

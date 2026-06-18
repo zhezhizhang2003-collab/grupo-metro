@@ -4,9 +4,11 @@ import '../styles/global.css';
 export interface Props {
   title: string;
   description: string;
+  ogImage?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogImage = '/logo.jpg' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, 'https://metrodistribucion.es').href;
 ---
 
 <!doctype html>
@@ -15,71 +17,280 @@ const { title, description } = Astro.props;
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content={`${title} | Grupo METRO`} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:site_name" content="Grupo METRO" />
+  <meta property="og:locale" content="es_ES" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={`${title} | Grupo METRO`} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- Canonical -->
+  <link rel="canonical" href={canonical} />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <title>{title} | Grupo Metro</title>
+  <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+
+  <title>{title} | Grupo METRO</title>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Grupo METRO",
+      "legalName": "Mehar Company SL",
+      "taxID": "B05412028",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Polígono Francolí Parcela 15, Nave 5",
+        "addressLocality": "Tarragona",
+        "postalCode": "43006",
+        "addressCountry": "ES"
+      },
+      "telephone": "+34600781881",
+      "url": "https://metrodistribucion.es",
+      "description": "Distribución de bebidas a restauración y supermercados en Tarragona",
+      "areaServed": {
+        "@type": "City",
+        "name": "Tarragona"
+      },
+      "@id": "https://metrodistribucion.es/#business"
+    }
+  </script>
 </head>
 <body class="font-body bg-zinc-950 text-white antialiased">
 
-<!-- Nav -->
-<nav class="fixed top-0 w-full z-50 bg-zinc-950/90 backdrop-blur border-b border-amber-500/20">
-  <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-    <a href="/" class="text-amber-400 font-display text-2xl tracking-wider hover:text-amber-300 transition">
-      GRUPO METRO
-    </a>
-    <div class="hidden md:flex gap-8 text-sm tracking-widest uppercase text-zinc-400">
-      <a href="/" class="hover:text-amber-400 transition" aria-current={Astro.url.pathname === '/' ? 'page' : undefined}>Inicio</a>
-      <a href="/catalogo" class="hover:text-amber-400 transition" aria-current={Astro.url.pathname === '/catalogo' ? 'page' : undefined}>Catálogo</a>
-      <a href="#contacto" class="hover:text-amber-400 transition">Contacto</a>
-    </div>
-    <button id="menu-btn" class="md:hidden text-amber-400 text-2xl" aria-label="Abrir menú">☰</button>
-  </div>
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-zinc-950 border-b border-amber-500/20 px-4 pb-4">
-    <a href="/" class="block py-2 text-sm tracking-widest uppercase text-zinc-400 hover:text-amber-400">Inicio</a>
-    <a href="/catalogo" class="block py-2 text-sm tracking-widest uppercase text-zinc-400 hover:text-amber-400">Catálogo</a>
-    <a href="#contacto" class="block py-2 text-sm tracking-widest uppercase text-zinc-400 hover:text-amber-400">Contacto</a>
-  </div>
-</nav>
+<!-- Skip to content (accesibilidad) -->
+<a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-amber-400 focus:text-black focus:px-6 focus:py-3 focus:rounded-lg focus:font-bold focus:outline-none focus:ring-4 focus:ring-amber-400/50">
+  Saltar al contenido
+</a>
 
-<script>
-  document.getElementById('menu-btn')?.addEventListener('click', () => {
-    document.getElementById('mobile-menu')?.classList.toggle('hidden');
-  });
-</script>
+<!-- Header / Nav -->
+<header class="fixed top-0 w-full z-50 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800/50" id="site-header">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="group flex items-center gap-3" aria-label="Grupo METRO — Ir al inicio">
+      <span class="text-amber-400 font-display text-2xl tracking-wider group-hover:text-amber-300 transition-colors">
+        GRUPO METRO
+      </span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-10 text-sm tracking-widest uppercase" aria-label="Navegación principal">
+      <a href="/" class="nav-link text-zinc-400 hover:text-amber-400 transition-colors duration-200
+        {Astro.url.pathname === '/' ? '!text-amber-400' : ''}"
+        aria-current={Astro.url.pathname === '/' ? 'page' : undefined}>
+        Inicio
+      </a>
+      <a href="/catalogo" class="nav-link text-zinc-400 hover:text-amber-400 transition-colors duration-200
+        {Astro.url.pathname === '/catalogo' ? '!text-amber-400' : ''}"
+        aria-current={Astro.url.pathname === '/catalogo' ? 'page' : undefined}>
+        Catálogo
+      </a>
+      <a href="/#contacto" class="nav-link text-zinc-400 hover:text-amber-400 transition-colors duration-200">
+        Contacto
+      </a>
+    </nav>
+
+    <!-- WhatsApp CTA (desktop) -->
+    <a href="https://wa.me/34600781881" target="_blank" rel="noopener noreferrer"
+      class="hidden md:inline-flex items-center gap-2 bg-amber-400/10 border border-amber-400/30 text-amber-400 px-4 py-2 rounded-lg text-xs tracking-wider uppercase font-semibold hover:bg-amber-400 hover:text-black transition-all duration-200">
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Pedidos
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button id="menu-btn" class="md:hidden relative w-8 h-8 flex items-center justify-center text-zinc-400 hover:text-amber-400 transition-colors"
+      aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="hamburger-line absolute w-5 h-0.5 bg-current transition-all duration-300" style="top:25%"></span>
+      <span class="hamburger-line absolute w-5 h-0.5 bg-current transition-all duration-300" style="top:49%"></span>
+      <span class="hamburger-line absolute w-5 h-0.5 bg-current transition-all duration-300" style="top:73%"></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <nav id="mobile-menu" class="md:hidden overflow-hidden transition-all duration-300 ease-in-out"
+    style="max-height:0;opacity:0" aria-label="Menú móvil">
+    <div class="px-4 pb-6 pt-2 space-y-1 bg-zinc-950/95 backdrop-blur-md border-b border-zinc-800/50">
+      <a href="/" class="mobile-nav-link block py-3 px-3 text-sm tracking-widest uppercase text-zinc-400 hover:text-amber-400 hover:bg-zinc-900/50 rounded-lg transition-all duration-200
+        {Astro.url.pathname === '/' ? '!text-amber-400 !bg-amber-400/5' : ''}">
+        Inicio
+      </a>
+      <a href="/catalogo" class="mobile-nav-link block py-3 px-3 text-sm tracking-widest uppercase text-zinc-400 hover:text-amber-400 hover:bg-zinc-900/50 rounded-lg transition-all duration-200
+        {Astro.url.pathname === '/catalogo' ? '!text-amber-400 !bg-amber-400/5' : ''}">
+        Catálogo
+      </a>
+      <a href="/#contacto" class="mobile-nav-link block py-3 px-3 text-sm tracking-widest uppercase text-zinc-400 hover:text-amber-400 hover:bg-zinc-900/50 rounded-lg transition-all duration-200">
+        Contacto
+      </a>
+      <div class="pt-3 mt-3 border-t border-zinc-800/50">
+        <a href="https://wa.me/34600781881" target="_blank" rel="noopener noreferrer"
+          class="block w-full text-center bg-amber-400 text-black px-4 py-3 rounded-lg text-sm tracking-wider uppercase font-bold hover:bg-amber-300 transition-colors">
+          💬 WhatsApp Pedidos
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Spacer para compensar nav fixed -->
+<div class="h-16"></div>
 
 <!-- Main content -->
-<main>
+<main id="main-content">
   <slot />
 </main>
 
 <!-- Footer -->
-<footer class="bg-black border-t border-zinc-900 py-12">
-  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-sm text-zinc-500">
-    <div>
-      <div class="text-amber-400 font-display text-xl mb-4">GRUPO METRO</div>
-      <p>Mehar Company SL<br>B05412028</p>
-    </div>
-    <div>
-      <p>Polígono Francolí Parcela 15, Nave 5<br>Tarragona 43006</p>
-      <p class="mt-2">
-        <a href="https://wa.me/34600781881" class="text-amber-400 hover:text-amber-300 transition">
-          WhatsApp: +34 600 781 881
-        </a>
-      </p>
-    </div>
-    <div class="flex flex-col gap-2">
-      <a href="/privacidad" class="hover:text-amber-400 transition">Política de Privacidad</a>
-      <a href="/aviso-legal" class="hover:text-amber-400 transition">Aviso Legal</a>
-      <a href="/cookies" class="hover:text-amber-400 transition">Política de Cookies</a>
+<footer class="bg-black border-t border-zinc-900" role="contentinfo">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+      <!-- Marca -->
+      <div class="space-y-3">
+        <div class="text-amber-400 font-display text-2xl tracking-wider">GRUPO METRO</div>
+        <p class="text-zinc-500 text-sm leading-relaxed">
+          Distribución profesional de bebidas para restauración y supermercados en Tarragona.
+          Más de 50 marcas líderes.
+        </p>
+      </div>
+
+      <!-- Contacto -->
+      <div class="space-y-3">
+        <h3 class="text-white font-semibold text-xs tracking-widest uppercase mb-4">Contacto</h3>
+        <div class="text-zinc-400 text-sm space-y-2">
+          <p class="flex items-start gap-2">
+            <span class="text-zinc-600 mt-0.5 shrink-0" aria-hidden="true">📍</span>
+            <span>Polígono Francolí Parcela 15, Nave 5<br>Tarragona 43006</span>
+          </p>
+          <a href="https://wa.me/34600781881" target="_blank" rel="noopener noreferrer"
+            class="flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors">
+            <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            +34 600 781 881
+          </a>
+        </div>
+      </div>
+
+      <!-- Legal + info -->
+      <div class="space-y-3">
+        <h3 class="text-white font-semibold text-xs tracking-widest uppercase mb-4">Información</h3>
+        <nav class="flex flex-col gap-2 text-sm" aria-label="Enlaces legales">
+          <a href="/catalogo" class="text-zinc-500 hover:text-amber-400 transition-colors">Catálogo de Productos</a>
+          <a href="/privacidad" class="text-zinc-500 hover:text-amber-400 transition-colors">Política de Privacidad</a>
+          <a href="/aviso-legal" class="text-zinc-500 hover:text-amber-400 transition-colors">Aviso Legal</a>
+          <a href="/cookies" class="text-zinc-500 hover:text-amber-400 transition-colors">Política de Cookies</a>
+        </nav>
+        <p class="text-zinc-600 text-xs pt-2">
+          Mehar Company SL · CIF B05412028
+        </p>
+      </div>
     </div>
   </div>
-  <div class="max-w-7xl mx-auto px-4 mt-8 pt-6 border-t border-zinc-900 text-center text-xs text-zinc-600">
-    &copy; {new Date().getFullYear()} Grupo Metro — Mehar Company SL. Todos los derechos reservados.
+
+  <!-- Copyright bar -->
+  <div class="border-t border-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-xs text-zinc-600">
+      &copy; {new Date().getFullYear()} Grupo Metro — Mehar Company SL. Todos los derechos reservados.
+    </div>
   </div>
 </footer>
+
+<!-- Mobile Menu Script -->
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerLines = menuBtn?.querySelectorAll('.hamburger-line');
+  const mobileLinks = mobileMenu?.querySelectorAll('.mobile-nav-link');
+  let menuOpen = false;
+
+  function openMenu() {
+    menuOpen = true;
+    mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+    mobileMenu.style.opacity = '1';
+    menuBtn.setAttribute('aria-label', 'Cerrar menú de navegación');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    menuBtn.classList.add('text-amber-400');
+    // Animate hamburger to X
+    if (hamburgerLines) {
+      hamburgerLines[0].style.transform = 'translateY(6px) rotate(45deg)';
+      hamburgerLines[1].style.opacity = '0';
+      hamburgerLines[2].style.transform = 'translateY(-6px) rotate(-45deg)';
+    }
+  }
+
+  function closeMenu() {
+    menuOpen = false;
+    mobileMenu.style.maxHeight = '0px';
+    mobileMenu.style.opacity = '0';
+    menuBtn.setAttribute('aria-label', 'Abrir menú de navegación');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.classList.remove('text-amber-400');
+    // Reset hamburger
+    if (hamburgerLines) {
+      hamburgerLines[0].style.transform = '';
+      hamburgerLines[1].style.opacity = '';
+      hamburgerLines[2].style.transform = '';
+    }
+  }
+
+  menuBtn?.addEventListener('click', () => {
+    if (menuOpen) closeMenu();
+    else openMenu();
+  });
+
+  // Close on link click
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menuOpen) closeMenu();
+  });
+
+  // Close on click outside
+  document.addEventListener('click', (e) => {
+    if (menuOpen && !menuBtn?.contains(e.target) && !mobileMenu?.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  // Recalculate height on resize
+  window.addEventListener('resize', () => {
+    if (menuOpen && window.innerWidth >= 768) {
+      closeMenu();
+    } else if (menuOpen) {
+      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+    }
+  });
+
+  // Header scroll effect
+  const header = document.getElementById('site-header');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY > 10) {
+      header?.classList.add('shadow-lg', 'shadow-black/20');
+    } else {
+      header?.classList.remove('shadow-lg', 'shadow-black/20');
+    }
+    lastScroll = scrollY;
+  }, { passive: true });
+</script>
 
 </body>
 </html>

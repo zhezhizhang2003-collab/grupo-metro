@@ -14,20 +14,46 @@
 
 ---
 
-## 2026-06-18 — Diagnóstico Inicial
+## 2026-06-18 19:10 - US-001/002/003/004/005
 
-### Issues encontrados:
-1. **Logos borrosos en la marquee:** Los archivos de logo tienen extensión `.png` pero internamente son JPEG de ~140x200px a 72 DPI. Al mostrarse a h-32 (128px), el navegador los escala y se pixelan. Además, la extensión incorrecta puede causar problemas de renderizado.
-2. **Formatos inconsistentes:** Algunos son JPEG (Coca-Cola, Heineken, Fanta, Evian, Estrella-Damm, Font-Vella...), uno es JPEG2000 (Red-Bull.png), y solo unos pocos son PNG real (Nestle.png).
-3. **Marcas sin logo:** Varias marcas pueden no tener su logo correspondiente.
-4. **SEO básico:** Solo meta description, sin Open Graph, Twitter Cards, sitemap, o datos estructurados.
-5. **Accesibilidad:** Sin focus states visibles, sin roles ARIA explícitos en algunos landmarks.
-6. **Menú móvil:** Funcionalidad básica sin animación suave.
+Thread: Manual (interactive session)
+- **US-001**: 35 logos corregidos — 22 SVG vectoriales + 13 PNG HD. 0 duplicados, 0 extensiones incorrectas
+- **US-002**: Rediseño completo manteniendo tema Industrial Bold (negro+ámbar):
+  - Doble cinta marquee (normal + inversa)
+  - Cards con hover lift y borde ámbar
+  - Hero con badge animado y glow
+  - Footer con iconos y mejor jerarquía
+  - Catálogo con pasos 1-2-3 para pedir
+  - Páginas legales con prose-legal personalizado
+- **US-003**: Open Graph + Twitter Cards + canonical en Layout.astro
+- **US-004**: JSON-LD LocalBusiness en todas las páginas
+- **US-005**: Accesibilidad (skip-to-content, aria-current, focus-visible, menú hamburguesa animado con escape/click fuera)
 
-### Archivos revisados:
-- `public/logos/` — 34 archivos PNG (muchos JPEG internamente)
-- `src/pages/` — 5 páginas Astro
-- `src/layouts/Layout.astro` — Layout principal
-- `package.json` — Astro 6 + Tailwind 4
+**Files changed:**
+- `src/layouts/Layout.astro` — nav, footer, SEO meta, JSON-LD, accesibilidad
+- `src/styles/global.css` — doble marquee, pulse-ring, card-lift, section-divider, marquee-mask, prose-legal
+- `src/pages/index.astro` — hero, tarjetas quiénes somos, doble cinta marcas, contacto
+- `src/pages/catalogo.astro` — vista previa macOS-style, categorías, pasos 1-2-3
+- `src/pages/aviso-legal.astro` — prose-legal, mejor tipografía
+- `src/pages/privacidad.astro` — prose-legal, fecha automática
+- `src/pages/cookies.astro` — prose-legal, mejor estructura
+- `public/logos/` — 22 SVG + 13 PNG nuevos, 0 duplicados
+
+**Learnings for future iterations:**
+- SVG vectorial siempre preferible sobre PNG para logos (worldvectorlogo.com buena fuente)
+- sips en macOS convierte JPEG→PNG correctamente, pero no mejora la calidad del original
+- Usar OCR (tesseract) para identificar imágenes sin nombre
+- Los PNG con paleta de 8-bit (colormap) pueden perder calidad — mejor RGBA
+- Tailwind v4 usa `@theme` en CSS, no `tailwind.config.js`
+- El menú móvil animado necesita max-height calculado con scrollHeight para la transición
+- Siempre verificar MD5 de las imágenes para detectar duplicados
+
+**Codebase Patterns actualizadas:**
+- SVG logos en `public/logos/` con nombres: espacios→guiones, sin tildes
+- Layout.astro ahora incluye OpenGraph + Twitter Card + JSON-LD + canonical automáticos
+- El array `marcas` en index.astro es la fuente de verdad para la marquee
+- `logoUrl()` usa dos arrays: `logosSvg` y `logosPng` — actualizar ambos al añadir/quitar logos
+- Mobile menu script inline en Layout.astro con animación CSS + JS
 
 ---
+
