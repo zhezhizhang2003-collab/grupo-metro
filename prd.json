@@ -1,0 +1,110 @@
+{
+  "project": "Grupo METRO Web",
+  "branchName": "ralph/mejoras-web",
+  "description": "Mejoras a la web de Grupo METRO: corrección de logos borrosos, SEO, diseño responsive, y accesibilidad.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Reemplazar logos borrosos por SVG de alta calidad",
+      "description": "Los logos de marcas en la sección marquee y catálogo están en baja resolución (~140x200px JPEG disfrazados de PNG) y se ven borrosos. Hay que reemplazarlos por SVG vectoriales o PNG de al menos 400px de altura.",
+      "acceptanceCriteria": [
+        "Logos principales (Coca-Cola, Heineken, Estrella Damm, Red Bull, Nestlé) convertidos a SVG o PNG de alta resolución",
+        "Los logos se ven nítidos en la marquee a tamaño h-32 (128px)",
+        "Los logos se ven nítidos en las categorías del catálogo a tamaño h-24 (96px)",
+        "Build exitoso con typecheck"
+      ],
+      "priority": 1,
+      "passes": false,
+      "notes": "Usar logo sources confiables: Wikipedia commons, brand logos CDN, o SVG de los sitios oficiales."
+    },
+    {
+      "id": "US-002",
+      "title": "Corregir extensiones de archivo incorrectas",
+      "description": "Varios archivos de logo tienen extensión .png pero internamente son JPEG. Esto causa problemas de renderizado y el navegador no puede optimizar correctamente.",
+      "acceptanceCriteria": [
+        "Todos los archivos de logo tienen extensión que coincide con su formato real",
+        "Las referencias en el código actualizadas a las nuevas extensiones",
+        "Build exitoso sin errores"
+      ],
+      "priority": 2,
+      "passes": false,
+      "notes": "Usar SVG siempre que sea posible. Si no, usar PNG real (no JPEG renombrado)."
+    },
+    {
+      "id": "US-003",
+      "title": "Añadir logos faltantes para marcas sin imagen",
+      "description": "Algunas marcas en la marquee no tienen logo (Mahou, Voll-Damm, Perrier, etc.) y muestran imagen rota. Hay que añadir logos para todas las marcas listadas.",
+      "acceptanceCriteria": [
+        "Todas las marcas en el array 'marcas' tienen su logo correspondiente",
+        "Ninguna imagen rota en la sección marquee",
+        "La función logoUrl() maneja correctamente marcas sin logo (fallback a placeholder o texto)",
+        "Build exitoso"
+      ],
+      "priority": 3,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Mejorar SEO con meta tags completos y sitemap",
+      "description": "La web necesita meta tags completos (Open Graph, Twitter Cards, canonical) y un sitemap automático para mejorar el posicionamiento.",
+      "acceptanceCriteria": [
+        "Open Graph tags en todas las páginas (og:title, og:description, og:image, og:type)",
+        "Twitter Card tags",
+        "Canonical URL en cada página",
+        "Sitemap.xml generado automáticamente",
+        "robots.txt añadido",
+        "Build exitoso"
+      ],
+      "priority": 4,
+      "passes": false,
+      "notes": "Astro tiene integración con @astrojs/sitemap para generar sitemap automático."
+    },
+    {
+      "id": "US-005",
+      "title": "Añadir datos estructurados JSON-LD para negocio local",
+      "description": "Para mejorar el SEO local, añadir schema.org JSON-LD de tipo LocalBusiness con datos de la empresa, dirección, teléfono y servicios.",
+      "acceptanceCriteria": [
+        "JSON-LD de tipo LocalBusiness en la página de inicio",
+        "Incluye nombre, dirección, teléfono, WhatsApp, coordenadas aproximadas de Tarragona",
+        "Validado con Google Rich Results Test",
+        "Build exitoso"
+      ],
+      "priority": 5,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-006",
+      "title": "Mejorar diseño responsive y accesibilidad",
+      "description": "Revisar y mejorar puntos débiles de responsive (menú móvil, espaciados, tamaños de fuente) y accesibilidad (contraste, focus states, landmarks ARIA, texto alternativo).",
+      "acceptanceCriteria": [
+        "Menú móvil completamente funcional con animación de apertura/cierre",
+        "Enlaces tienen focus visible para navegación por teclado",
+        "Contraste suficiente en todos los textos (mínimo AA)",
+        "Atributos alt descriptivos en todas las imágenes",
+        "Roles ARIA y landmarks correctos (main, nav, footer)",
+        "Responsive verificado en 320px, 375px, 768px, 1024px, 1440px",
+        "Build exitoso"
+      ],
+      "priority": 6,
+      "passes": false,
+      "notes": ""
+    },
+    {
+      "id": "US-007",
+      "title": "Ejecutar build final y verificar calidad",
+      "description": "Ejecutar build de producción, verificar que no haya errores, comprobar el tamaño del bundle, y validar todos los enlaces y recursos.",
+      "acceptanceCriteria": [
+        "Build de producción exitoso sin warnings",
+        "Todas las páginas renderizan correctamente",
+        "No hay enlaces rotos ni recursos 404",
+        "Tamaño total del build < 10MB",
+        "Todas las imágenes se cargan correctamente"
+      ],
+      "priority": 7,
+      "passes": false,
+      "notes": ""
+    }
+  ]
+}

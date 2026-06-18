@@ -1,0 +1,85 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>{title} | Grupo Metro</title>
+</head>
+<body class="font-body bg-zinc-950 text-white antialiased">
+
+<!-- Nav -->
+<nav class="fixed top-0 w-full z-50 bg-zinc-950/90 backdrop-blur border-b border-amber-500/20">
+  <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="/" class="text-amber-400 font-display text-2xl tracking-wider hover:text-amber-300 transition">
+      GRUPO METRO
+    </a>
+    <div class="hidden md:flex gap-8 text-sm tracking-widest uppercase text-zinc-400">
+      <a href="/" class="hover:text-amber-400 transition" aria-current={Astro.url.pathname === '/' ? 'page' : undefined}>Inicio</a>
+      <a href="/catalogo" class="hover:text-amber-400 transition" aria-current={Astro.url.pathname === '/catalogo' ? 'page' : undefined}>Catálogo</a>
+      <a href="#contacto" class="hover:text-amber-400 transition">Contacto</a>
+    </div>
+    <button id="menu-btn" class="md:hidden text-amber-400 text-2xl" aria-label="Abrir menú">☰</button>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-zinc-950 border-b border-amber-500/20 px-4 pb-4">
+    <a href="/" class="block py-2 text-sm tracking-widest uppercase text-zinc-400 hover:text-amber-400">Inicio</a>
+    <a href="/catalogo" class="block py-2 text-sm tracking-widest uppercase text-zinc-400 hover:text-amber-400">Catálogo</a>
+    <a href="#contacto" class="block py-2 text-sm tracking-widest uppercase text-zinc-400 hover:text-amber-400">Contacto</a>
+  </div>
+</nav>
+
+<script>
+  document.getElementById('menu-btn')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu')?.classList.toggle('hidden');
+  });
+</script>
+
+<!-- Main content -->
+<main>
+  <slot />
+</main>
+
+<!-- Footer -->
+<footer class="bg-black border-t border-zinc-900 py-12">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-sm text-zinc-500">
+    <div>
+      <div class="text-amber-400 font-display text-xl mb-4">GRUPO METRO</div>
+      <p>Mehar Company SL<br>B05412028</p>
+    </div>
+    <div>
+      <p>Polígono Francolí Parcela 15, Nave 5<br>Tarragona 43006</p>
+      <p class="mt-2">
+        <a href="https://wa.me/34600781881" class="text-amber-400 hover:text-amber-300 transition">
+          WhatsApp: +34 600 781 881
+        </a>
+      </p>
+    </div>
+    <div class="flex flex-col gap-2">
+      <a href="/privacidad" class="hover:text-amber-400 transition">Política de Privacidad</a>
+      <a href="/aviso-legal" class="hover:text-amber-400 transition">Aviso Legal</a>
+      <a href="/cookies" class="hover:text-amber-400 transition">Política de Cookies</a>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 mt-8 pt-6 border-t border-zinc-900 text-center text-xs text-zinc-600">
+    &copy; {new Date().getFullYear()} Grupo Metro — Mehar Company SL. Todos los derechos reservados.
+  </div>
+</footer>
+
+</body>
+</html>

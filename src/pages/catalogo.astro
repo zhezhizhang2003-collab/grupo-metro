@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Catálogo"
+  description="Catálogo de productos Grupo METRO — Bebidas, refrescos, cervezas, aguas y más. Precios actualizados."
+>
+
+<section class="hero-bg pt-24 pb-16">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <span class="text-amber-400 text-sm tracking-[.3em] uppercase">Productos</span>
+    <h1 class="font-display text-5xl md:text-7xl mt-4">CATÁLOGO</h1>
+    <p class="text-zinc-400 mt-4 max-w-xl mx-auto">
+      Junio 2026. Consulta todos nuestros productos, formatos y precios actualizados.
+    </p>
+  </div>
+</section>
+
+<!-- Vista previa y enlace al PDF -->
+<section class="py-16 bg-black">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h2 class="font-display text-4xl text-amber-400 mb-4">CATÁLOGO COMPLETO</h2>
+        <p class="text-zinc-400 mb-6">
+          Nuestro catálogo incluye todos los productos disponibles con sus precios actualizados.
+          Haz clic para abrirlo en una pestaña nueva o descárgalo para consultarlo cuando quieras.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="/catalogo-junio-2026.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-amber-400 text-black px-8 py-4 font-semibold tracking-wider uppercase text-sm text-center hover:bg-amber-300 transition"
+          >
+            📄 Abrir Catálogo PDF
+          </a>
+          <a
+            href="/catalogo-junio-2026.pdf"
+            download
+            class="border border-zinc-700 px-8 py-4 text-sm tracking-wider uppercase text-center hover:border-amber-400 transition"
+          >
+            ⬇ Descargar
+          </a>
+        </div>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 text-center">
+        <img src="/logo.jpg" alt="Grupo Metro" class="w-full max-w-[280px] mx-auto rounded-lg mb-4" loading="lazy" />
+        <p class="text-zinc-400 text-sm font-semibold">Catálogo Junio 2026</p>
+        <p class="text-zinc-600 text-xs mt-1">Formato PDF · 47 páginas · Precios + IVA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Categorías del catálogo con logos -->
+<section class="py-16 bg-zinc-950">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="font-display text-4xl text-center mb-10">¿QUÉ ENCONTRARÁS?</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-8 text-center hover:border-amber-400/30 transition">
+        <img src="/logos/Coca-Cola.png" alt="Refrescos" class="h-24 w-auto mx-auto object-contain mb-4" loading="lazy" />
+        <h3 class="font-semibold text-white text-sm">Refrescos</h3>
+        <p class="text-zinc-500 text-xs mt-1">Coca-Cola, Fanta, Nestea, Granini...</p>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-8 text-center hover:border-amber-400/30 transition">
+        <img src="/logos/Evian.png" alt="Aguas" class="h-24 w-auto mx-auto object-contain mb-4" loading="lazy" />
+        <h3 class="font-semibold text-white text-sm">Aguas</h3>
+        <p class="text-zinc-500 text-xs mt-1">Font Vella, Evian, Bezoya, Nestlé...</p>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-8 text-center hover:border-amber-400/30 transition">
+        <img src="/logos/Heineken.png" alt="Cervezas" class="h-24 w-auto mx-auto object-contain mb-4" loading="lazy" />
+        <h3 class="font-semibold text-white text-sm">Cervezas</h3>
+        <p class="text-zinc-500 text-xs mt-1">Estrella Damm, Heineken, Mahou...</p>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-8 text-center hover:border-amber-400/30 transition">
+        <img src="/logos/Red-Bull.png" alt="Energéticas" class="h-24 w-auto mx-auto object-contain mb-4" loading="lazy" />
+        <h3 class="font-semibold text-white text-sm">Energéticas + Licores</h3>
+        <p class="text-zinc-500 text-xs mt-1">Red Bull, Powerking, Brugal, Larios...</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Info pedidos -->
+<section class="py-16 bg-black">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <h2 class="font-display text-4xl text-amber-400 mb-4">¿CÓMO PEDIR?</h2>
+    <p class="text-zinc-400 max-w-lg mx-auto mb-6">
+      Contacta con nosotros por WhatsApp y te preparamos el pedido. Rápido, fácil y sin complicaciones.
+    </p>
+    <a href="https://wa.me/34600781881" class="inline-flex items-center gap-2 bg-green-600 text-white px-8 py-4 font-semibold tracking-wider uppercase text-sm hover:bg-green-500 transition">
+      💬 Pedir por WhatsApp
+    </a>
+  </div>
+</section>
+
+</Layout>

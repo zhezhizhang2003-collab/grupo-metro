@@ -1,0 +1,33 @@
+# Progress Log — Grupo METRO Web
+
+## Codebase Patterns
+
+- **Diseño Industrial Bold:** negro (#0a0a0a, bg-zinc-950, bg-black) + ámbar (#f59e0b / amber-400)
+- **Fuentes:** Bebas Neue (display headings) + Inter (body 400-700)
+- **Tailwind v4:** usa `@import "tailwindcss"` y `@theme` en CSS (no tailwind.config.js)
+- **Astro 6:** soporta Tailwind v4 nativamente con `@tailwindcss/vite`
+- **Marquee animation:** CSS keyframes con `translateX(-50%)`, array duplicado para bucle continuo
+- **Logo naming:** `Coca-Cola.png`, `Estrella-Damm.png` — espacios → guiones, caracteres especiales eliminados
+- **Layout.astro:** Componente layout que acepta `title` y `description` via Astro.props
+- **Sin componentes separados:** Los componentes están inline — refactorizar a `src/components/` cuando crezca
+- **PDFs en /public/:** acceso directo sin procesamiento, no pasan por Astro build pipeline
+
+---
+
+## 2026-06-18 — Diagnóstico Inicial
+
+### Issues encontrados:
+1. **Logos borrosos en la marquee:** Los archivos de logo tienen extensión `.png` pero internamente son JPEG de ~140x200px a 72 DPI. Al mostrarse a h-32 (128px), el navegador los escala y se pixelan. Además, la extensión incorrecta puede causar problemas de renderizado.
+2. **Formatos inconsistentes:** Algunos son JPEG (Coca-Cola, Heineken, Fanta, Evian, Estrella-Damm, Font-Vella...), uno es JPEG2000 (Red-Bull.png), y solo unos pocos son PNG real (Nestle.png).
+3. **Marcas sin logo:** Varias marcas pueden no tener su logo correspondiente.
+4. **SEO básico:** Solo meta description, sin Open Graph, Twitter Cards, sitemap, o datos estructurados.
+5. **Accesibilidad:** Sin focus states visibles, sin roles ARIA explícitos en algunos landmarks.
+6. **Menú móvil:** Funcionalidad básica sin animación suave.
+
+### Archivos revisados:
+- `public/logos/` — 34 archivos PNG (muchos JPEG internamente)
+- `src/pages/` — 5 páginas Astro
+- `src/layouts/Layout.astro` — Layout principal
+- `package.json` — Astro 6 + Tailwind 4
+
+---
