@@ -28,15 +28,6 @@ const logoUrl = (marca: string) => {
   if (logosPng.includes(file)) return `/logos/${file}.png`;
   return null;
 };
-
-const topBrands = [
-  { name: 'Coca-Cola', url: '/logos/Coca-Cola.svg' },
-  { name: 'Heineken', url: '/logos/Heineken.svg' },
-  { name: 'Estrella Damm', url: '/logos/Estrella-Damm.svg' },
-  { name: 'Red Bull', url: '/logos/Red-Bull.svg' },
-  { name: 'Nestlé', url: '/logos/Nestle.svg' },
-  { name: 'Font Vella', url: '/logos/Font-Vella.png' },
-];
 ---
 
 <Layout
@@ -55,72 +46,37 @@ const topBrands = [
     </svg>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 md:py-24 relative z-10">
-    <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
-
-      <!-- Texto -->
-      <div class="reveal">
-        <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-6">
-          <span class="w-2 h-2 rounded-full bg-brand-red"></span>
-          <span class="text-zinc-300 text-xs tracking-wider uppercase font-medium">Distribución · Tarragona</span>
-        </div>
-
-        <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.0] text-balance uppercase tracking-tight">
-          Líderes en<br>
-          <span class="text-brand-red">Distribución</span>
-        </h1>
-
-        <p class="text-zinc-400 mt-6 text-base sm:text-lg max-w-md leading-relaxed">
-          Llevamos las mejores marcas a restaurantes, bares y supermercados de Tarragona desde hace más de 15 años.
-        </p>
-
-        <!-- Badges de confianza — sustituyen los CTAs redundantes -->
-        <div class="flex flex-wrap gap-3 mt-8">
-          <span class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-xs text-zinc-300 font-medium">
-            <svg class="w-3.5 h-3.5 text-brand-red shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Distribuidor oficial
-          </span>
-          <span class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-xs text-zinc-300 font-medium">
-            <svg class="w-3.5 h-3.5 text-brand-red shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
-            Entrega en Tarragona
-          </span>
-          <span class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-xs text-zinc-300 font-medium">
-            <svg class="w-3.5 h-3.5 text-brand-red shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            Respuesta rápida
-          </span>
-        </div>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 md:py-24 relative z-10 text-center">
+    <div class="reveal">
+      <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8">
+        <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+        <span class="text-zinc-300 text-xs tracking-wider uppercase font-medium">Distribución · Tarragona</span>
       </div>
 
-      <!-- Visual derecha: logo pequeño + stats + logos de marcas -->
-      <div class="reveal">
-        <!-- Logo + stats: se ve en móvil y desktop -->
-        <div class="flex items-center gap-6 mb-6">
-          <div class="shrink-0">
-            <img src="/logo.jpg" alt="Grupo METRO" class="w-[120px] sm:w-[160px] rounded-xl" width="160" height="80" loading="eager" />
-          </div>
-          <div class="space-y-3">
-            <div class="flex items-center gap-2">
-              <span class="text-2xl font-display text-brand-red leading-none">+50</span>
-              <span class="text-zinc-400 text-xs leading-tight">marcas<br>oficiales</span>
-            </div>
-            <div class="w-full h-px bg-white/5"></div>
-            <div class="flex items-center gap-2">
-              <span class="text-2xl font-display text-brand-blue leading-none">15+</span>
-              <span class="text-zinc-400 text-xs leading-tight">años de<br>experiencia</span>
-            </div>
-          </div>
-        </div>
+      <h1 class="font-display text-6xl sm:text-7xl lg:text-8xl leading-[0.95] text-balance uppercase tracking-tight">
+        Líderes en<br>
+        <span class="text-brand-red">Distribución</span>
+      </h1>
 
-        <!-- Grid de logos de marcas top -->
-        <div class="grid grid-cols-3 gap-2 sm:gap-3">
-          {topBrands.map(brand => (
-            <div class="bg-white/5 border border-white/10 rounded-xl p-3 flex items-center justify-center hover:border-brand-red/30 transition-all duration-200 h-12 sm:h-14">
-              <img src={brand.url} alt={brand.name} class="h-7 sm:h-9 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" loading="lazy" width="80" height="36" />
-            </div>
-          ))}
-        </div>
+      <p class="text-zinc-400 mt-6 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+        Llevamos las mejores marcas a restaurantes, bares y supermercados de Tarragona desde hace más de 15 años.
+      </p>
+
+      <!-- Badges de confianza -->
+      <div class="flex flex-wrap justify-center gap-3 mt-10">
+        <span class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-xs text-zinc-300 font-medium">
+          <svg class="w-3.5 h-3.5 text-brand-red shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Distribuidor oficial
+        </span>
+        <span class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-xs text-zinc-300 font-medium">
+          <svg class="w-3.5 h-3.5 text-brand-red shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/></svg>
+          Entrega en Tarragona
+        </span>
+        <span class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-xs text-zinc-300 font-medium">
+          <svg class="w-3.5 h-3.5 text-brand-red shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Respuesta rápida
+        </span>
       </div>
-
     </div>
   </div>
 
@@ -325,7 +281,7 @@ const topBrands = [
       <!-- Mapa -->
       <div class="bg-[var(--color-light-alt)] border border-[var(--color-light-border)] rounded-2xl overflow-hidden min-h-[280px] relative shadow-[var(--shadow-md)]">
         <iframe
-          src="https://maps.google.com/maps?q=Polígono+Francolí+Parcela+15+Tarragona&amp;output=embed"
+          src="https://maps.google.com/maps?q=41.1133865,1.2188209(METRO+CASH+AND+CARRY)&amp;z=16&amp;output=embed"
           width="100%" height="100%"
           style="border:0; min-height: 280px;"
           allowfullscreen=""
@@ -333,7 +289,7 @@ const topBrands = [
           referrerpolicy="no-referrer-when-downgrade"
           title="Grupo METRO — Polígono Francolí, Tarragona">
         </iframe>
-        <a href="https://maps.google.com/?q=Polígono+Francolí+Parcela+15+Nave+5+Tarragona+43006"
+        <a href="https://www.google.com/maps/place/METRO+CASH+AND+CARRY/@41.1133865,1.216246,17z/"
           target="_blank" rel="noopener noreferrer"
           class="absolute bottom-3 right-3 bg-white/95 text-brand-red hover:text-brand-red-dark text-xs tracking-wider uppercase font-semibold px-3 py-1.5 rounded-lg transition-colors shadow-[var(--shadow-md)]">
           Ver en Google Maps <span aria-hidden="true">&#8599;</span>
