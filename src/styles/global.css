@@ -3,12 +3,12 @@
 @theme {
   --font-display: 'Oswald', sans-serif;
   --font-body: 'Inter', sans-serif;
-  /* Paleta del logo: rojo + azul + negro + blanco */
+  /* Paleta del logo */
   --color-brand-red: #c12743;
   --color-brand-red-light: #e0445d;
-  --color-brand-red-dark: #9e1f36;
   --color-brand-blue: #3d3c99;
   --color-brand-blue-light: #5b5ab5;
+  --color-brand-blue-dark: #2e2d7a;
 }
 
 @layer base {
@@ -19,18 +19,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
-  ::selection {
-    background: var(--color-brand-red);
-    color: #fff;
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--color-brand-red);
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-
+  ::selection { background: var(--color-brand-red); color: #fff; }
+  :focus-visible { outline: 2px solid var(--color-brand-red); outline-offset: 2px; border-radius: 4px; }
   ::-webkit-scrollbar { width: 8px; }
   ::-webkit-scrollbar-track { background: #0a0a0a; }
   ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
@@ -38,14 +28,18 @@
 }
 
 @layer utilities {
+  /* Hero: negro con toques azules y rojos sutiles */
   .hero-bg {
-    background: linear-gradient(135deg, #0a0a0a 0%, #111827 40%, #0f0f2e 70%, #0a0a0a 100%);
+    background: linear-gradient(135deg, #0a0a0a 0%, #0c0c1a 30%, #0f0f2e 60%, #0a0a0a 100%);
   }
   .text-balance { text-wrap: balance; }
   .section-divider {
     background: linear-gradient(90deg, transparent 0%, var(--color-brand-red) 50%, transparent 100%);
-    height: 1px;
-    opacity: 0.2;
+    height: 1px; opacity: 0.2;
+  }
+  .section-divider-blue {
+    background: linear-gradient(90deg, transparent 0%, var(--color-brand-blue) 50%, transparent 100%);
+    height: 1px; opacity: 0.2;
   }
   .marquee-mask {
     mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
@@ -56,23 +50,24 @@
   }
   .card-lift:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(193, 39, 67, 0.08);
+  }
+  /* Glows en ambos colores */
+  .glow-red {
+    box-shadow: 0 8px 30px rgba(193, 39, 67, 0.10);
+  }
+  .glow-blue {
+    box-shadow: 0 8px 30px rgba(61, 60, 153, 0.10);
   }
 }
 
-/* ── Marquee GPU-accelerated ── */
+/* ── Marquee GPU ── */
 @keyframes marquee {
   0%   { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(-50%, 0, 0); }
 }
 .animate-marquee {
   animation: marquee 50s linear infinite;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-.marquee-pause:hover .animate-marquee,
-.marquee-pause:hover .animate-marquee-reverse {
-  animation-play-state: paused;
+  will-change: transform; backface-visibility: hidden;
 }
 @keyframes marquee-reverse {
   0%   { transform: translate3d(-50%, 0, 0); }
@@ -80,18 +75,18 @@
 }
 .animate-marquee-reverse {
   animation: marquee-reverse 55s linear infinite;
-  will-change: transform;
-  backface-visibility: hidden;
+  will-change: transform; backface-visibility: hidden;
+}
+.marquee-pause:hover .animate-marquee,
+.marquee-pause:hover .animate-marquee-reverse {
+  animation-play-state: paused;
 }
 
-/* ── Nav link underline ── */
+/* ── Nav underline rojo ── */
 .nav-link { position: relative; }
 .nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -4px; left: 0;
-  width: 0; height: 2px;
-  background: var(--color-brand-red);
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 2px; background: var(--color-brand-red);
   transition: width 0.25s ease;
 }
 .nav-link:hover::after,
@@ -99,12 +94,8 @@
 
 /* ── Prose legal ── */
 .prose-legal h2 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  color: #fff;
-  margin-top: 2.5em;
-  margin-bottom: 0.75em;
-  letter-spacing: 0.02em;
+  font-family: var(--font-display); font-weight: 400; color: #fff;
+  margin-top: 2.5em; margin-bottom: 0.75em; letter-spacing: 0.02em;
 }
 .prose-legal h2:first-child { margin-top: 0; }
 .prose-legal a { color: var(--color-brand-red); text-decoration: none; transition: color 0.2s; }
@@ -113,14 +104,12 @@
 .prose-legal ul { color: #d1d5db; }
 .prose-legal p { color: #a1a1aa; }
 
-/* ── Fade in on scroll ── */
-.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-
-/* ── Pulse ring CTA ── */
-@keyframes pulse-ring {
+/* ── Pulse ring rojo ── */
+@keyframes pulse-ring-red {
   0%   { box-shadow: 0 0 0 0 rgba(193, 39, 67, 0.4); }
   70%  { box-shadow: 0 0 0 12px rgba(193, 39, 67, 0); }
   100% { box-shadow: 0 0 0 0 rgba(193, 39, 67, 0); }
 }
-.pulse-ring { animation: pulse-ring 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.pulse-ring {
+  animation: pulse-ring-red 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
