@@ -113,7 +113,7 @@ const topBrands = [
         </div>
         <div class="grid grid-cols-3 gap-3 mt-10">
           {topBrands.map(brand => (
-            <div class="bg-zinc-900/80 border border-zinc-800/80 rounded-xl p-4 flex items-center justify-center hover:border-brand-red/30 transition-all duration-200 h-16">
+            <div class="bg-[var(--color-surface-card)]/80 border border-[var(--color-border)]/80 rounded-xl p-4 flex items-center justify-center hover:border-brand-red/30 transition-all duration-200 h-16">
               <img src={brand.url} alt={brand.name} class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" loading="lazy" width="80" height="40" />
             </div>
           ))}
@@ -124,7 +124,7 @@ const topBrands = [
       <div class="md:hidden">
         <div class="grid grid-cols-3 gap-2 mt-4">
           {topBrands.map(brand => (
-            <div class="bg-zinc-900/80 border border-zinc-800/80 rounded-xl p-3 flex items-center justify-center hover:border-brand-red/30 transition-all duration-200 h-12">
+            <div class="bg-[var(--color-surface-card)]/80 border border-[var(--color-border)]/80 rounded-xl p-3 flex items-center justify-center hover:border-brand-red/30 transition-all duration-200 h-12">
               <img src={brand.url} alt={brand.name} class="h-7 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity" loading="lazy" width="80" height="40" />
             </div>
           ))}
@@ -136,7 +136,7 @@ const topBrands = [
 </section>
 
 <!-- ═══════ QUIÉNES SOMOS ═══════ -->
-<section class="py-20 sm:py-28 bg-black relative overflow-hidden">
+<section class="py-20 sm:py-28 bg-[var(--color-surface-alt)] relative overflow-hidden">
   <div class="absolute top-0 left-0 right-0 h-px section-divider" aria-hidden="true"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <span class="text-brand-red text-xs sm:text-sm tracking-[.3em] uppercase">Quiénes Somos</span>
@@ -146,21 +146,21 @@ const topBrands = [
     </p>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
-      <div class="group bg-zinc-900/50 border border-zinc-800/80 rounded-xl p-6 sm:p-8 hover:border-brand-red/30 transition-all duration-300 card-lift">
+      <div class="group bg-[var(--color-surface-card)]/50 border border-[var(--color-border)]/80 rounded-xl p-6 sm:p-8 hover:border-brand-red/30 transition-all duration-300 card-lift">
         <div class="w-12 h-12 rounded-lg bg-brand-red/10 flex items-center justify-center mb-5 group-hover:bg-brand-red/15 transition-colors">
           <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
         </div>
         <div class="text-4xl font-display text-brand-red mb-2">+50</div>
         <p class="text-zinc-400 text-sm leading-relaxed">Marcas oficiales con las que colaboramos directamente, desde refrescos hasta licores premium.</p>
       </div>
-      <div class="group bg-zinc-900/50 border border-zinc-800/80 rounded-xl p-6 sm:p-8 hover:border-brand-blue/30 transition-all duration-300 card-lift glow-blue">
+      <div class="group bg-[var(--color-surface-card)]/50 border border-[var(--color-border)]/80 rounded-xl p-6 sm:p-8 hover:border-brand-blue/30 transition-all duration-300 card-lift glow-blue">
         <div class="w-12 h-12 rounded-lg bg-brand-blue/10 flex items-center justify-center mb-5 group-hover:bg-brand-blue/15 transition-colors">
           <svg class="w-6 h-6 text-brand-blue" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </div>
         <div class="text-4xl font-display text-brand-blue mb-2">Tarragona</div>
         <p class="text-zinc-400 text-sm leading-relaxed">Cobertura completa en toda la provincia: restauración, bares, supermercados y tiendas de conveniencia.</p>
       </div>
-      <div class="group bg-zinc-900/50 border border-zinc-800/80 rounded-xl p-6 sm:p-8 hover:border-brand-red/30 transition-all duration-300 card-lift">
+      <div class="group bg-[var(--color-surface-card)]/50 border border-[var(--color-border)]/80 rounded-xl p-6 sm:p-8 hover:border-brand-red/30 transition-all duration-300 card-lift">
         <div class="w-12 h-12 rounded-lg bg-brand-red/10 flex items-center justify-center mb-5 group-hover:bg-brand-red/15 transition-colors">
           <svg class="w-6 h-6 text-brand-red" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
         </div>
@@ -172,7 +172,7 @@ const topBrands = [
 </section>
 
 <!-- ═══════ MARCAS ═══════ -->
-<section class="py-16 sm:py-28 bg-zinc-950 overflow-hidden">
+<section class="py-16 sm:py-28 bg-[var(--color-surface)] overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12">
     <span class="text-brand-red text-xs sm:text-sm tracking-[.3em] uppercase">Colaboraciones Oficiales</span>
     <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl mt-3 sm:mt-4 leading-[1.05] uppercase">Marcas que<br>Distribuimos</h2>
@@ -188,7 +188,7 @@ const topBrands = [
         {[...sinAlcohol, ...sinAlcohol].map((marca) => {
           const url = logoUrl(marca);
           return (
-            <div class="bg-zinc-900 border border-zinc-800/80 rounded-lg sm:rounded-xl px-3 sm:px-5 py-3 sm:py-4 flex flex-col items-center gap-2 sm:gap-3 hover:border-brand-blue/50 hover:bg-zinc-900/80 transition-all duration-300 shrink-0 w-[110px] sm:w-[140px]">
+            <div class="bg-[var(--color-surface-card)] border border-[var(--color-border)]/80 rounded-lg sm:rounded-xl px-3 sm:px-5 py-3 sm:py-4 flex flex-col items-center gap-2 sm:gap-3 hover:border-brand-blue/50 hover:bg-[var(--color-surface-card)]/80 transition-all duration-300 shrink-0 w-[110px] sm:w-[140px]">
               <div class="h-16 sm:h-20 w-full flex items-center justify-center">
                 {url ? (
                   <img src={url} alt={marca} class="h-16 sm:h-20 w-auto max-w-full object-contain" loading="lazy" width="80" height="64" />
@@ -214,7 +214,7 @@ const topBrands = [
         {[...conAlcohol, ...conAlcohol].map((marca) => {
           const url = logoUrl(marca);
           return (
-            <div class="bg-zinc-900 border border-zinc-800/80 rounded-lg sm:rounded-xl px-3 sm:px-5 py-3 sm:py-4 flex flex-col items-center gap-2 sm:gap-3 hover:border-brand-red/40 hover:bg-zinc-900/80 transition-all duration-300 shrink-0 w-[110px] sm:w-[140px]">
+            <div class="bg-[var(--color-surface-card)] border border-[var(--color-border)]/80 rounded-lg sm:rounded-xl px-3 sm:px-5 py-3 sm:py-4 flex flex-col items-center gap-2 sm:gap-3 hover:border-brand-red/40 hover:bg-[var(--color-surface-card)]/80 transition-all duration-300 shrink-0 w-[110px] sm:w-[140px]">
               <div class="h-16 sm:h-20 w-full flex items-center justify-center">
                 {url ? (
                   <img src={url} alt={marca} class="h-16 sm:h-20 w-auto max-w-full object-contain" loading="lazy" width="80" height="64" />
@@ -252,7 +252,7 @@ const topBrands = [
 </section>
 
 <!-- ═══════ CONTACTO ═══════ -->
-<section id="contacto" class="py-20 sm:py-28 bg-black relative overflow-hidden">
+<section id="contacto" class="py-20 sm:py-28 bg-[var(--color-surface-alt)] relative overflow-hidden">
   <div class="absolute top-0 left-0 right-0 h-px section-divider" aria-hidden="true"></div>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <span class="text-brand-red text-xs sm:text-sm tracking-[.3em] uppercase">Contacto</span>
@@ -281,7 +281,7 @@ const topBrands = [
           </div>
         </div>
         <div class="flex items-start gap-4">
-          <div class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center shrink-0 mt-0.5">
+          <div class="w-10 h-10 rounded-lg bg-[var(--color-surface-card-hover)] flex items-center justify-center shrink-0 mt-0.5">
             <svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
           </div>
           <div>
@@ -293,7 +293,7 @@ const topBrands = [
       </div>
 
       <!-- Mapa -->
-      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden min-h-[280px] relative">
+      <div class="bg-[var(--color-surface-card)] border border-[var(--color-border)] rounded-2xl overflow-hidden min-h-[280px] relative">
         <iframe
           src="https://maps.google.com/maps?q=Polígono+Francolí+Parcela+15+Tarragona&amp;output=embed"
           width="100%" height="100%"
@@ -305,7 +305,7 @@ const topBrands = [
         </iframe>
         <a href="https://maps.google.com/?q=Polígono+Francolí+Parcela+15+Nave+5+Tarragona+43006"
           target="_blank" rel="noopener noreferrer"
-          class="absolute bottom-3 right-3 bg-black/80 text-brand-red hover:text-brand-red-light text-xs tracking-wider uppercase font-semibold px-3 py-1.5 rounded-lg transition-colors backdrop-blur">
+          class="absolute bottom-3 right-3 bg-[var(--color-surface-alt)]/80 text-brand-red hover:text-brand-red-light text-xs tracking-wider uppercase font-semibold px-3 py-1.5 rounded-lg transition-colors backdrop-blur">
           Ver en Google Maps <span aria-hidden="true">&#8599;</span>
         </a>
       </div>
