@@ -91,26 +91,26 @@ const topBrands = [
         </div>
       </div>
 
-      <!-- Visual: Logo Grupo Metro + logos de marcas -->
-      <div class="hidden md:block">
-        <div class="relative">
+      <!-- Visual: Logo Grupo Metro + logos de marcas (visible en todos los tamaños) -->
+      <div>
+        <div class="relative max-w-[280px] sm:max-w-sm mx-auto">
           <div class="absolute inset-0 bg-amber-400/10 rounded-3xl blur-2xl" aria-hidden="true"></div>
           <img
             src="/logo.jpg"
             alt="Logo Grupo METRO — Distribuidora de bebidas en Tarragona"
-            class="relative w-full max-w-sm mx-auto rounded-2xl"
+            class="relative w-full mx-auto rounded-2xl"
             width="400" height="200"
             loading="eager"
           />
         </div>
-        <!-- Logos de marcas top en vez de texto -->
-        <div class="grid grid-cols-3 gap-3 mt-10">
+        <!-- Logos de marcas top -->
+        <div class="grid grid-cols-3 gap-2 sm:gap-3 mt-6 sm:mt-10">
           {topBrands.map(brand => (
-            <div class="bg-zinc-900/80 border border-zinc-800/80 rounded-xl p-4 flex items-center justify-center hover:border-amber-400/30 transition-all duration-200 h-16">
+            <div class="bg-zinc-900/80 border border-zinc-800/80 rounded-xl p-3 sm:p-4 flex items-center justify-center hover:border-amber-400/30 transition-all duration-200 h-12 sm:h-16">
               <img
                 src={brand.url}
                 alt={brand.name}
-                class="h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
+                class="h-7 sm:h-10 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
                 loading="lazy"
                 width="80" height="40"
               />
@@ -161,10 +161,10 @@ const topBrands = [
 </section>
 
 <!-- ═══════ MARCAS — Doble cinta por categoría ═══════ -->
-<section class="py-20 sm:py-28 bg-zinc-950 overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+<section class="py-16 sm:py-28 bg-zinc-950 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12">
     <span class="text-amber-400 text-xs sm:text-sm tracking-[.3em] uppercase">Colaboraciones Oficiales</span>
-    <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mt-4 leading-[1.05]">MARCAS QUE<br>DISTRIBUIMOS</h2>
+    <h2 class="font-display text-3xl sm:text-5xl lg:text-6xl mt-3 sm:mt-4 leading-[1.05]">MARCAS QUE<br>DISTRIBUIMOS</h2>
   </div>
 
   <!-- CINTA SUPERIOR: Refrescos, Aguas, Zumos (sin alcohol) -->
@@ -177,15 +177,15 @@ const topBrands = [
         {[...sinAlcohol, ...sinAlcohol].map((marca) => {
           const url = logoUrl(marca);
           return (
-            <div class="bg-zinc-900 border border-zinc-800/80 rounded-xl px-5 py-4 flex flex-col items-center gap-3 hover:border-amber-400/40 hover:bg-zinc-900/80 transition-all duration-300 shrink-0 w-[140px]">
-              <div class="h-20 w-full flex items-center justify-center">
+            <div class="bg-zinc-900 border border-zinc-800/80 rounded-lg sm:rounded-xl px-3 sm:px-5 py-3 sm:py-4 flex flex-col items-center gap-2 sm:gap-3 hover:border-amber-400/40 hover:bg-zinc-900/80 transition-all duration-300 shrink-0 w-[110px] sm:w-[140px]">
+              <div class="h-16 sm:h-20 w-full flex items-center justify-center">
                 {url ? (
-                  <img src={url} alt={marca} class="h-20 w-auto max-w-full object-contain" loading="lazy" width="100" height="80" />
+                  <img src={url} alt={marca} class="h-16 sm:h-20 w-auto max-w-full object-contain" loading="lazy" width="80" height="64" />
                 ) : (
-                  <span class="font-display text-2xl text-zinc-600 tracking-wide leading-none text-center">{marca}</span>
+                  <span class="font-display text-lg sm:text-2xl text-zinc-600 tracking-wide leading-none text-center">{marca}</span>
                 )}
               </div>
-              <span class="text-xs text-zinc-500 font-medium tracking-wide text-center">{marca}</span>
+              <span class="text-[10px] sm:text-xs text-zinc-500 font-medium tracking-wide text-center leading-tight">{marca}</span>
             </div>
           );
         })}
@@ -203,15 +203,15 @@ const topBrands = [
         {[...conAlcohol, ...conAlcohol].map((marca) => {
           const url = logoUrl(marca);
           return (
-            <div class="bg-zinc-900 border border-zinc-800/80 rounded-xl px-5 py-4 flex flex-col items-center gap-3 hover:border-amber-400/40 hover:bg-zinc-900/80 transition-all duration-300 shrink-0 w-[140px]">
-              <div class="h-20 w-full flex items-center justify-center">
+            <div class="bg-zinc-900 border border-zinc-800/80 rounded-lg sm:rounded-xl px-3 sm:px-5 py-3 sm:py-4 flex flex-col items-center gap-2 sm:gap-3 hover:border-amber-400/40 hover:bg-zinc-900/80 transition-all duration-300 shrink-0 w-[110px] sm:w-[140px]">
+              <div class="h-16 sm:h-20 w-full flex items-center justify-center">
                 {url ? (
-                  <img src={url} alt={marca} class="h-20 w-auto max-w-full object-contain" loading="lazy" width="100" height="80" />
+                  <img src={url} alt={marca} class="h-16 sm:h-20 w-auto max-w-full object-contain" loading="lazy" width="80" height="64" />
                 ) : (
-                  <span class="font-display text-2xl text-zinc-600 tracking-wide leading-none text-center">{marca}</span>
+                  <span class="font-display text-lg sm:text-2xl text-zinc-600 tracking-wide leading-none text-center">{marca}</span>
                 )}
               </div>
-              <span class="text-xs text-zinc-500 font-medium tracking-wide text-center">{marca}</span>
+              <span class="text-[10px] sm:text-xs text-zinc-500 font-medium tracking-wide text-center leading-tight">{marca}</span>
             </div>
           );
         })}
