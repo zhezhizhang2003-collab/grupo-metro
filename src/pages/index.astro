@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 
 const sinAlcohol = [
-  'Coca-Cola','Fanta-2023','Nestea','Nestlé','Don Simon','Granini','Juver',
+  'Coca-Cola','Fanta','Nestea','Nestlé','Don Simon','Granini','Juver',
   'Evian','Font Vella','Bezoya','San Pellegrino','Solán de Cabras','Viladrau','Vichy Catalan','Perrier'
 ];
 const conAlcohol = [
@@ -16,7 +16,7 @@ const logoUrl = (marca: string) => {
   const file = marca.replace(/ /g, '-').replace(/ñ/g, 'n').replace(/é/g, 'e').replace(/á/g, 'a').replace(/ó/g, 'o').replace(/í/g, 'i').replace(/ú/g, 'u').replace(/'/g, '');
   const logosSvg = [
     'Alhambra','Budweiser','Coca-Cola','Coors','Corona','Desperados',
-    'Estrella-Damm','Estrella-Galicia','Evian','Fanta-2023','Granini','Guinness',
+    'Estrella-Damm','Estrella-Galicia','Evian','Granini','Guinness',
     'Heineken','Kopparberg','Mahou','Nestea','Nestle','Perrier',
     'Red-Bull','San-Pellegrino'
   ];
@@ -24,6 +24,7 @@ const logoUrl = (marca: string) => {
     'Bezoya','Bodega-Pinord','Brugal','Don-Simon','Font-Vella','Juver','Larios',
     'Magners','Powerking','San-Miguel','Solan-de-Cabras','Strongbow','Vichy-Catalan','Viladrau','Voll-Damm'
   ];
+  if (file === 'Fanta') return '/logos/Fanta-2023.svg';
   if (logosSvg.includes(file)) return `/logos/${file}.svg`;
   if (logosPng.includes(file)) return `/logos/${file}.png`;
   return null;
